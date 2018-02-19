@@ -32,8 +32,6 @@ function saveMarketPlacePlugin(plugin, callback){
       var dBase = database.db("plugindb")
       dBase.collection("marketplaceplugin").insertOne(plugin, function(err, res){
          if (err) return callback(err)
-            //console.log("3. ")
-         //console.log("User successfully saved")
          database.close()
          var result = { "status" : "OK"}
          callback(null, result)
@@ -145,7 +143,6 @@ async.series([
 })
    }], function(data){
       res.setHeader('Content-Type','application/json')
-      //res.setHeader('Access-Control-Allow-Origin', '*')
     if (data) {
             res.status(200)
             console.log(JSON.stringify({paymentId:data.PaymentId}))
@@ -173,12 +170,6 @@ app.post('/addplugin', urlencodedParser, function(req, res) {
             resources : {
                imageUrl : req.body.resources.imageUrl,
                title : req.body.resources.title
-               /*headerText : {
-                  i18n : {
-                     huHU : req.body.resources.headerText.i18n.huHU,
-                     enUS : req.body.resources.headerText.i18n.enUS
-                  }
-               }*/
             }
          }
          saveMarketPlacePlugin(plugin, function(err, result){
@@ -228,7 +219,6 @@ app.get('/getplugins', function(req, res){
          }
             console.log(JSON.stringify({plugins:dbResult}))
          res.json({plugins:dbResult})
-         //res.end(JSON.stringify(dbResult))
       })
 })
 
