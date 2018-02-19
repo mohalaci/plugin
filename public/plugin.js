@@ -90,7 +90,7 @@ function successfulPaymentCallback(data){
 }
 
 function unSuccessfulPaymentCallback(data){
-  window.location.href = "/undone.html"
+  window.location.href = "/failed.html"
   console.log("UNDONE: ezt kaptuk a mobiltol nativan:");
   console.log(data);
 }
