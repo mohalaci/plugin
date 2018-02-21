@@ -26,7 +26,7 @@ var app = new Framework7({
   },
   statusbar: {
     enabled: true,
-    overlay: true,
+    overlay: 'auto',
     iosOverlaysWebView: false,
     iosBackgroundColor: '#2196f3',
     materialBackgroundColor: '#2196f3'
