@@ -9,10 +9,6 @@ html.with-panel-left-cover .statusbar,
     transition: 250ms;
 }
 
-html, body, .framework7-root {
-    height: auto !important;
-}
-
 #app, 
 #app .view {
     background: #2196f3 !important;
