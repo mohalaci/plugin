@@ -20,12 +20,17 @@ var app = new Framework7({
       url: 'undone.html'
     }
   ],
+  navbar: {
+    hideOnPageScroll: false,
+    iosCenterTitle: true
+  }
   /*view: {
     iosDynamicNavbar: false,
   },*/
   // ... other parameters
 });
 var mainView = app.views.create('.view-main');
+var ptr = app.ptr.create('.ptr-content');
 
 app.on('click', function (page) {
   // do something on page init
