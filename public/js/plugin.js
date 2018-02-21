@@ -41,7 +41,6 @@ ptrContent.on('ptr:refresh', function (e) {
   app.ptr.done();
 });
 
-app.statusbar.show();
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#2196f3');
 
