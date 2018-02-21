@@ -9,6 +9,11 @@ html.with-panel-left-cover .statusbar,
     transition: 250ms;
 }
 
+#app, 
+#app .view {
+    background: #2196f3 !important;
+}
+
 .statusbar-overlay {
     background: #2196f3 !important;
 }

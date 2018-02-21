@@ -26,8 +26,10 @@ var app = new Framework7({
   },
   statusbar: {
     enabled: true,
-    overlay: true,
-    iosBackgroundColor: '#2196f3'
+    overlay: 'auto',
+    iosOverlaysWebView: true,
+    iosBackgroundColor: '#2196f3',
+    materialBackgroundColor: '#2196f3'
   }
 });
 var $$ = Dom7;
