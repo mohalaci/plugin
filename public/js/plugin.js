@@ -44,9 +44,12 @@ ptrContent.on('ptr:refresh', function (e) {
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#2196f3');
 
-$('body').scrollTop(20);
-$('.view').scrollTop(20);
-$('.page-content').scrollTop(20); // status bar auto scroll
+// iOS status bar auto scroll
+if ($('html.ios').length > 0) {
+  $('body').scrollTop(20);
+  $('.view').scrollTop(20);
+  $('.page-content').scrollTop(20);
+}
 
 app.on('click', function (page) {
   // do something on page init
