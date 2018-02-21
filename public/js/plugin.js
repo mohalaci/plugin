@@ -45,6 +45,9 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#2196f3');
 
 app.on('init', function(appData) {
+  console.log('init OK');
+  $('body').scrollTop(20);
+  $('.view').scrollTop(20);
   $('.page-content').scrollTop(20); // status bar auto scroll
 });
 
