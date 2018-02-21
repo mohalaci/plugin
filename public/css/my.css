@@ -3,10 +3,6 @@ html, body {
     background-color: #2196f3;
 }
 
-html.ios {
-margin-top: -20px !important;
-}
-
 html.with-panel-left-cover .statusbar,
 .statusbar {
     background: #2196f3 !important;
