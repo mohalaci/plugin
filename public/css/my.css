@@ -3,6 +3,12 @@ html, body {
     background-color: #2196f3;
 }
 
+html.with-panel-left-cover .statusbar,
+.statusbar {
+    background: #2196f3 !important;
+    transition: 250ms;
+}
+
 .statusbar-overlay {
     background: #2196f3 !important;
 }

@@ -23,11 +23,12 @@ var app = new Framework7({
   navbar: {
     hideOnPageScroll: false,
     iosCenterTitle: true
+  },
+  statusbar: {
+    enabled: true,
+    overlay: true,
+    iosBackgroundColor: '#2196f3'
   }
-  /*view: {
-    iosDynamicNavbar: false,
-  },*/
-  // ... other parameters
 });
 var $$ = Dom7;
 var mainView = app.views.create('.view-main');
