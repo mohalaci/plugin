@@ -9,10 +9,6 @@ html.with-panel-left-cover .statusbar,
     transition: 250ms;
 }
 
-html.with-statusbar.device-ios .framework7-root {
-    padding-top: 0 !important;
-}
-
 #app, 
 #app .view {
     background: #2196f3 !important;
