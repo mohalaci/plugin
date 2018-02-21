@@ -44,6 +44,10 @@ ptrContent.on('ptr:refresh', function (e) {
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#2196f3');
 
+$(document).ready(function(){
+  $('body').scrollTop(20);
+});
+
 app.on('click', function (page) {
   // do something on page init
       var payButton = document.getElementById("payWithBarionButton");
