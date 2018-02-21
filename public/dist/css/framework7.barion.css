@@ -172,7 +172,7 @@ p {
   display: none !important;
 }
 .md a {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .theme-dark {
   color: rgba(255, 255, 255, 0.87);
@@ -184,7 +184,7 @@ p {
   color: #4caf50;
 }
 .md .color-theme-blue a {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-pink a {
   color: #e91e63;
@@ -211,7 +211,7 @@ p {
   color: #4caf50;
 }
 .md a.color-blue {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md a.color-pink {
   color: #e91e63;
@@ -1180,7 +1180,7 @@ html.with-statusbar.device-iphone-x .panel {
 }
 .md .navbar {
   height: 56px;
-  background: #1993c7;
+  background: #1A80BB;
   color: #fff;
   font-size: 20px;
 }
@@ -1306,7 +1306,7 @@ html.with-statusbar.device-iphone-x .panel {
 }
 .md .color-theme-blue .navbar,
 .md .color-theme-blue.navbar {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .navbar,
 .md .color-theme-pink.navbar {
@@ -1339,7 +1339,7 @@ html.with-statusbar.device-iphone-x .panel {
   background: #4caf50;
 }
 .md .navbar.color-blue {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .navbar.color-pink {
   background: #e91e63;
@@ -1825,7 +1825,7 @@ html.with-statusbar.device-iphone-x .panel {
   }
 }
 .md .toolbar {
-  background: #1993c7;
+  background: #1A80BB;
   height: 48px;
   color: #fff;
   font-size: 14px;
@@ -2087,7 +2087,7 @@ html.with-statusbar.device-iphone-x .panel {
 }
 .md .color-theme-blue .toolbar:not(.messagebar),
 .md .color-theme-blue.toolbar:not(.messagebar) {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .toolbar:not(.messagebar),
 .md .color-theme-pink.toolbar:not(.messagebar) {
@@ -2120,7 +2120,7 @@ html.with-statusbar.device-iphone-x .panel {
   background: #4caf50;
 }
 .md .toolbar:not(.messagebar).color-blue {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .toolbar:not(.messagebar).color-pink {
   background: #e91e63;
@@ -2352,7 +2352,7 @@ html.with-statusbar.device-iphone-x .panel {
 }
 .md .subnavbar {
   height: 48px;
-  background: #1993c7;
+  background: #1A80BB;
   color: #fff;
 }
 .md .subnavbar:after {
@@ -2481,7 +2481,7 @@ html.with-statusbar.device-iphone-x .panel {
 }
 .md .color-theme-blue .subnavbar,
 .md .color-theme-blue.subnavbar {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .subnavbar,
 .md .color-theme-pink.subnavbar {
@@ -2514,7 +2514,7 @@ html.with-statusbar.device-iphone-x .panel {
   background: #4caf50;
 }
 .md .subnavbar.color-blue {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .subnavbar.color-pink {
   background: #e91e63;
@@ -4599,7 +4599,7 @@ html.device-pixel-ratio-3 .md li:last-child li .item-inner:after {
   color: #4caf50;
 }
 .md .color-theme-blue .list-button {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-pink .list-button {
   color: #e91e63;
@@ -4644,7 +4644,7 @@ html.device-pixel-ratio-3 .md li:last-child li .item-inner:after {
 .md .links-list a.color-blue,
 .md .list .item-link.color-blue,
 .md .list li.color-blue .item-link {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .list .list-button.color-pink,
 .md .list li.color-pink .list-button,
@@ -4790,7 +4790,7 @@ html.device-pixel-ratio-3 .md li:last-child li .item-inner:after {
   background-color: #4caf50;
 }
 .md .badge.color-blue {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .badge.color-pink {
   background-color: #e91e63;
@@ -5496,7 +5496,7 @@ button {
   background-color: transparent;
 }
 .md .button {
-  color: #1993c7;
+  color: #1A80BB;
   border-radius: 2px;
   line-height: 36px;
   height: 36px;
@@ -5516,7 +5516,7 @@ button {
 .md .button.button-fill-md,
 .md .button.button-active,
 .md .button.tab-link-active {
-  background-color: #1993c7;
+  background-color: #1A80BB;
   color: #fff;
 }
 .md .button.button-fill.active-state,
@@ -5536,7 +5536,7 @@ button {
   border-radius: 36px;
 }
 .md .button.button-outline {
-  border: 1px solid #1993c7;
+  border: 1px solid #1A80BB;
   line-height: 34px;
 }
 .md .button.button-outline.button-big,
@@ -5602,7 +5602,7 @@ button {
   border-left: none;
 }
 .md .segmented .button.button-outline {
-  border: 1px solid #1993c7;
+  border: 1px solid #1A80BB;
 }
 .md .segmented .button.button-outline:nth-child(n + 2) {
   border-left: none;
@@ -5682,7 +5682,7 @@ button {
 }
 .md .color-theme-blue .button,
 .md .color-blue .button {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-blue .button.button-fill,
 .md .color-blue .button.button-fill,
@@ -5692,7 +5692,7 @@ button {
 .md .color-blue .button.button-active,
 .md .color-theme-blue .button.tab-link-active,
 .md .color-blue .button.tab-link-active {
-  background-color: #1993c7;
+  background-color: #1A80BB;
   color: #fff;
 }
 .md .color-theme-blue .button.button-fill.active-state,
@@ -5707,7 +5707,7 @@ button {
 }
 .md .color-theme-blue .button.button-outline,
 .md .color-blue .button.button-outline {
-  border-color: #1993c7;
+  border-color: #1A80BB;
 }
 .md .color-theme-pink .button,
 .md .color-pink .button {
@@ -5922,13 +5922,13 @@ button {
   border-color: #4caf50;
 }
 .md .button.color-blue {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .button.color-blue.button-fill,
 .md .button.color-blue.button-fill-md,
 .md .button.color-blue.button-active,
 .md .button.color-blue.tab-link-active {
-  background-color: #1993c7;
+  background-color: #1A80BB;
   color: #fff;
 }
 .md .button.color-blue.button-fill.active-state,
@@ -5938,7 +5938,7 @@ button {
   background: #0c82df;
 }
 .md .button.color-blue.button-outline {
-  border-color: #1993c7;
+  border-color: #1A80BB;
 }
 .md .button.color-pink {
   color: #e91e63;
@@ -6571,7 +6571,7 @@ i.icon {
   color: #4caf50;
 }
 .md .icon.color-blue {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .icon.color-pink {
   color: #e91e63;
@@ -7017,7 +7017,7 @@ html.with-modal-dialog .page-content {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: middle;
-  color: #1993c7;
+  color: #1A80BB;
   border-radius: 2px;
   line-height: 36px;
   height: 36px;
@@ -7090,7 +7090,7 @@ input[type="button"].md .dialog-button {
   color: #4caf50;
 }
 .md .dialog-button.color-blue {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .dialog-button.color-pink {
   color: #e91e63;
@@ -7346,7 +7346,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .login-screen {
 }
 .md .login-screen-content .list-button {
   text-align: center;
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .login-screen-title {
   font-size: 34px;
@@ -7362,7 +7362,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .login-screen {
   color: #4caf50;
 }
 .md .color-theme-blue .login-screen-content .list-button {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-pink .login-screen-content .list-button {
   color: #e91e63;
@@ -7389,7 +7389,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .login-screen {
   color: #4caf50;
 }
 .md .login-screen-content .list-button.color-blue {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .login-screen-content .list-button.color-pink {
   color: #e91e63;
@@ -8253,7 +8253,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .login-screen {
 .md .actions-button.color-blue,
 .md .actions-label.color-blue,
 .md .actions-button.color-blue .actions-button-text {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .actions-button.color-pink,
 .md .actions-label.color-pink,
@@ -8851,7 +8851,7 @@ html.with-modal-preloader .page-content {
 .md .preloader.preloader-blue .preloader-inner-gap,
 .md .preloader.color-blue .preloader-inner-half-circle,
 .md .preloader.preloader-blue .preloader-inner-half-circle {
-  border-color: #1993c7;
+  border-color: #1A80BB;
 }
 .md .preloader.color-pink .preloader-inner-gap,
 .md .preloader.preloader-pink .preloader-inner-gap,
@@ -9477,7 +9477,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
   transform-origin: center bottom;
 }
 .md .progressbar span {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .progressbar-infinite {
   z-index: 15000;
@@ -9485,7 +9485,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
 .md .progressbar-infinite:before,
 .md .progressbar-infinite:after {
   content: '';
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .progressbar-infinite:before {
   -webkit-animation: md-progressbar-infinite-1 2s linear infinite;
@@ -9534,11 +9534,11 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
   background: rgba(33, 150, 243, 0.5);
 }
 .md .color-theme-blue .progressbar span {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-blue .progressbar-infinite:before,
 .md .color-theme-blue .progressbar-infinite:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .progressbar,
 .md .color-theme-pink .progressbar-infinite {
@@ -9633,11 +9633,11 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
   background: rgba(33, 150, 243, 0.5);
 }
 .md .progressbar.color-blue span {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .progressbar-infinite.color-blue:before,
 .md .progressbar-infinite.color-blue:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .progressbar.color-pink,
 .md .progressbar-infinite.color-pink {
@@ -9793,7 +9793,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
     background-color: #f44336;
   }
   50% {
-    background-color: #1993c7;
+    background-color: #1A80BB;
   }
   75% {
     background-color: #ffeb3b;
@@ -9807,7 +9807,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
     background-color: #f44336;
   }
   50% {
-    background-color: #1993c7;
+    background-color: #1A80BB;
   }
   75% {
     background-color: #ffeb3b;
@@ -9827,12 +9827,12 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
   25% {
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
-    background-color: #1993c7;
+    background-color: #1A80BB;
   }
   49.9% {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
-    background-color: #1993c7;
+    background-color: #1A80BB;
   }
   50% {
     -webkit-transform: scaleX(0);
@@ -9869,12 +9869,12 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
   25% {
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
-    background-color: #1993c7;
+    background-color: #1A80BB;
   }
   49.9% {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
-    background-color: #1993c7;
+    background-color: #1A80BB;
   }
   50% {
     -webkit-transform: scaleX(0);
@@ -10246,7 +10246,7 @@ html.with-statusbar.md:not(.device-ios):not(.device-android) .framework7-root > 
 .md .swipeout-actions-right > span.color-blue,
 .md .swipeout-actions-left > div.color-blue,
 .md .swipeout-actions-right > div.color-blue {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .swipeout-actions-left > a.color-pink,
 .md .swipeout-actions-right > a.color-pink,
@@ -11440,7 +11440,7 @@ html.device-android-4 .accordion-item-content {
   padding-bottom: 12px;
 }
 .md .timeline-horizontal .timeline-item-date {
-  background: #1993c7;
+  background: #1A80BB;
   padding: 0px 12px;
   color: #fff;
 }
@@ -11514,7 +11514,7 @@ html.device-android-4 .accordion-item-content {
 .md .timeline-month-title {
   padding: 0 12px;
   color: #fff;
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .timeline-year-title span,
 .md .timeline-month-title span {
@@ -11542,7 +11542,7 @@ html.device-android-4 .accordion-item-content {
 .md .color-theme-blue .timeline-item-date,
 .md .color-theme-blue .timeline-year-title,
 .md .color-theme-blue .timeline-month-title {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .timeline-item-date,
 .md .color-theme-pink .timeline-year-title,
@@ -11587,7 +11587,7 @@ html.device-android-4 .accordion-item-content {
 .md .timeline.color-theme-blue .timeline-item-date,
 .md .timeline.color-theme-blue .timeline-year-title,
 .md .timeline.color-theme-blue .timeline-month-title {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .timeline.color-theme-pink .timeline-item-date,
 .md .timeline.color-theme-pink .timeline-year-title,
@@ -12088,7 +12088,7 @@ html.device-pixel-ratio-3 .card-footer:before {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: middle;
-  color: #1993c7;
+  color: #1A80BB;
   border-radius: 2px;
   line-height: 36px;
   height: 36px;
@@ -12164,7 +12164,7 @@ input[type="button"].md .card-footer a.link {
 .md .color-theme-blue .card-footer a.link,
 .md .card-header.color-theme-blue a.link,
 .md .card-footer.color-theme-blue a.link {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-pink .card-header a.link,
 .md .color-theme-pink .card-footer a.link,
@@ -12212,7 +12212,7 @@ input[type="button"].md .card-footer a.link {
 }
 .md .card-header a.link.color-blue,
 .md .card-footer a.link.color-blue {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .card-header a.link.color-pink,
 .md .card-footer a.link.color-pink {
@@ -12424,7 +12424,7 @@ input[type="button"].md .card-footer a.link {
   color: #fff;
 }
 .md .chip.color-blue {
-  background: #1993c7;
+  background: #1A80BB;
   color: #fff;
 }
 .md .chip.color-pink {
@@ -12954,10 +12954,10 @@ textarea {
 }
 .md .item-input-focused .item-label,
 .md .item-input-focused .item-floating-label {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .item-input-focused .item-input-wrap:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .item-input-invalid .item-label,
 .md .item-input-invalid .item-floating-label {
@@ -13101,10 +13101,10 @@ textarea {
 }
 .md .color-theme-blue .item-input-focused .item-label,
 .md .color-theme-blue .item-input-focused .item-floating-label {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-blue .item-input-focused .item-input-wrap:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .item-input-focused .item-label,
 .md .color-theme-pink .item-input-focused .item-floating-label {
@@ -13164,10 +13164,10 @@ textarea {
 }
 .md .item-input-focused.color-blue .item-label,
 .md .item-input-focused.color-blue .item-floating-label {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .item-input-focused.color-blue .item-input-wrap:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .item-input-focused.color-pink .item-label,
 .md .item-input-focused.color-pink .item-floating-label {
@@ -13402,8 +13402,8 @@ label.item-checkbox.disabled,
 .md label.item-checkbox input[type="checkbox"]:checked ~ .icon-checkbox,
 .md label.item-checkbox input[type="checkbox"]:checked ~ * .icon-checkbox,
 .md .checkbox input[type="checkbox"]:checked ~ i {
-  background-color: #1993c7;
-  border-color: #1993c7;
+  background-color: #1A80BB;
+  border-color: #1A80BB;
 }
 .md label.item-checkbox input[type="checkbox"]:checked ~ .icon-checkbox:after,
 .md label.item-checkbox input[type="checkbox"]:checked ~ * .icon-checkbox:after,
@@ -13455,8 +13455,8 @@ label.item-checkbox.disabled,
 .md .color-theme-blue label.item-checkbox input[type="checkbox"]:checked ~ .icon-checkbox,
 .md .color-theme-blue label.item-checkbox input[type="checkbox"]:checked ~ * .icon-checkbox,
 .md .color-theme-blue .checkbox input[type="checkbox"]:checked ~ i {
-  background-color: #1993c7;
-  border-color: #1993c7;
+  background-color: #1A80BB;
+  border-color: #1A80BB;
 }
 .md .color-theme-blue .checkbox .ripple-wave {
   background: rgba(33, 150, 243, 0.5);
@@ -13536,8 +13536,8 @@ label.item-checkbox.disabled,
 .md label.item-checkbox.color-blue input[type="checkbox"]:checked ~ .icon-checkbox,
 .md label.item-checkbox.color-blue input[type="checkbox"]:checked ~ * .icon-checkbox,
 .md .checkbox.color-blue input[type="checkbox"]:checked ~ i {
-  background-color: #1993c7;
-  border-color: #1993c7;
+  background-color: #1A80BB;
+  border-color: #1A80BB;
 }
 .md .checkbox.color-blue .ripple-wave {
   background: rgba(33, 150, 243, 0.5);
@@ -13872,7 +13872,7 @@ label.item-radio.disabled,
   top: 50%;
   margin-left: -5px;
   margin-top: -5px;
-  background-color: #1993c7;
+  background-color: #1A80BB;
   border-radius: 50%;
   -webkit-transform: scale(0);
   transform: scale(0);
@@ -13882,12 +13882,12 @@ label.item-radio.disabled,
 .md label.item-radio input[type="radio"]:checked ~ .icon-radio,
 .md label.item-radio input[type="radio"]:checked ~ * .icon-radio,
 .md .radio input[type="radio"]:checked ~ .icon-radio {
-  border-color: #1993c7;
+  border-color: #1A80BB;
 }
 .md label.item-radio input[type="radio"]:checked ~ .icon-radio:after,
 .md label.item-radio input[type="radio"]:checked ~ * .icon-radio:after,
 .md .radio input[type="radio"]:checked ~ .icon-radio:after {
-  background-color: #1993c7;
+  background-color: #1A80BB;
   -webkit-transform: scale(1);
   transform: scale(1);
 }
@@ -13947,17 +13947,17 @@ label.item-radio.disabled,
   background: rgba(76, 175, 80, 0.5);
 }
 .md .color-theme-blue .icon-radio:after {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .color-theme-blue label.item-radio input[type="radio"]:checked ~ .icon-radio,
 .md .color-theme-blue label.item-radio input[type="radio"]:checked ~ * .icon-radio,
 .md .color-theme-blue .radio input[type="radio"]:checked ~ .icon-radio {
-  border-color: #1993c7;
+  border-color: #1A80BB;
 }
 .md .color-theme-blue label.item-radio input[type="radio"]:checked ~ .icon-radio:after,
 .md .color-theme-blue label.item-radio input[type="radio"]:checked ~ * .icon-radio:after,
 .md .color-theme-blue .radio input[type="radio"]:checked ~ .icon-radio:after {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .color-theme-blue .radio .ripple-wave {
   background: rgba(33, 150, 243, 0.5);
@@ -14091,17 +14091,17 @@ label.item-radio.disabled,
   background: rgba(76, 175, 80, 0.5);
 }
 .md .radio.color-blue .icon-radio:after {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md label.item-radio.color-blue input[type="radio"]:checked ~ .icon-radio,
 .md label.item-radio.color-blue input[type="radio"]:checked ~ * .icon-radio,
 .md .radio.color-blue input[type="radio"]:checked ~ .icon-radio {
-  border-color: #1993c7;
+  border-color: #1A80BB;
 }
 .md label.item-radio.color-blue input[type="radio"]:checked ~ .icon-radio:after,
 .md label.item-radio.color-blue input[type="radio"]:checked ~ * .icon-radio:after,
 .md .radio.color-blue input[type="radio"]:checked ~ .icon-radio:after {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .radio.color-blue .ripple-wave {
   background: rgba(33, 150, 243, 0.5);
@@ -14354,7 +14354,7 @@ label.item-radio.disabled,
 .md .toggle input[type="checkbox"]:checked + .toggle-icon:after {
   -webkit-transform: translateX(16px);
   transform: translateX(16px);
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .toggle-icon {
   width: 36px;
@@ -14387,7 +14387,7 @@ label.item-radio.disabled,
   background: rgba(33, 150, 243, 0.5);
 }
 .md .color-theme-blue .toggle input[type="checkbox"]:checked + .toggle-icon:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .toggle input[type="checkbox"]:checked + .toggle-icon {
   background: rgba(233, 30, 99, 0.5);
@@ -14441,7 +14441,7 @@ label.item-radio.disabled,
   background: rgba(33, 150, 243, 0.5);
 }
 .md .toggle.color-blue input[type="checkbox"]:checked + .toggle-icon:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .toggle.color-pink input[type="checkbox"]:checked + .toggle-icon {
   background: rgba(233, 30, 99, 0.5);
@@ -14645,7 +14645,7 @@ label.item-radio.disabled,
   margin-top: -1px;
 }
 .md .range-bar-active {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .range-knob-wrap {
   height: 12px;
@@ -14654,7 +14654,7 @@ label.item-radio.disabled,
   margin-left: -6px;
 }
 .md .range-knob {
-  background: #1993c7;
+  background: #1A80BB;
   -webkit-transition-duration: 200ms;
   transition-duration: 200ms;
   -webkit-transition-property: background-color, -webkit-transform;
@@ -14675,7 +14675,7 @@ label.item-radio.disabled,
   height: 26px;
   margin-left: -13px;
   margin-bottom: 8px;
-  background: #1993c7;
+  background: #1A80BB;
   color: #fff;
   font-size: 10px;
   border-radius: 50%;
@@ -14690,7 +14690,7 @@ label.item-radio.disabled,
   z-index: -1;
   width: 26px;
   height: 26px;
-  background: #1993c7;
+  background: #1A80BB;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   border-radius: 50% 50% 50% 0;
@@ -14719,7 +14719,7 @@ label.item-radio.disabled,
 .md .color-theme-blue .range-slider .range-knob,
 .md .color-theme-blue .range-slider .range-knob-label,
 .md .color-theme-blue .range-slider .range-knob-label:before {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .color-theme-pink .range-slider .range-bar-active,
 .md .color-theme-pink .range-slider .range-knob,
@@ -14773,7 +14773,7 @@ label.item-radio.disabled,
 .md .range-slider.color-blue .range-knob,
 .md .range-slider.color-blue .range-knob-label,
 .md .range-slider.color-blue .range-knob-label:before {
-  background-color: #1993c7;
+  background-color: #1A80BB;
 }
 .md .range-slider.color-pink .range-bar-active,
 .md .range-slider.color-pink .range-knob,
@@ -17492,7 +17492,7 @@ label.item-radio.disabled,
 }
 .md .calendar-header {
   height: 56px;
-  background: #1993c7;
+  background: #1A80BB;
   font-size: 20px;
   line-height: 56px;
   padding: 0 24px;
@@ -17564,16 +17564,16 @@ label.item-radio.disabled,
   line-height: 24px;
 }
 .md .calendar-day.calendar-day-today span {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .calendar-day.calendar-day-has-events span:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .calendar-day.calendar-day-has-events.calendar-day-selected span:after {
   background-color: #fff;
 }
 .md .calendar-day.calendar-day-selected span {
-  background: #1993c7;
+  background: #1A80BB;
   color: #fff;
 }
 .md .calendar-day span {
@@ -17711,19 +17711,19 @@ label.item-radio.disabled,
 }
 .md .color-theme-blue .calendar-header,
 .md .color-blue .calendar-header {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-blue .calendar-day.calendar-day-today span,
 .md .color-blue .calendar-day.calendar-day-today span {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-blue .calendar-day.calendar-day-has-events span:after,
 .md .color-blue .calendar-day.calendar-day-has-events span:after {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-blue .calendar-day.calendar-day-selected span,
 .md .color-blue .calendar-day.calendar-day-selected span {
-  background: #1993c7;
+  background: #1A80BB;
   color: #fff;
 }
 .md .color-theme-blue .calendar-day.calendar-day-selected span:after,
@@ -18991,7 +18991,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
   background: rgba(33, 150, 243, 0.1);
 }
 .md .data-table-title-selected {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .data-table tbody td:before {
   content: '';
@@ -19130,7 +19130,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
 }
 .md .color-theme-blue .data-table-title-selected,
 .md .color-blue .data-table-title-selected {
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .color-theme-pink .data-table-header-selected,
 .md .data-table-header-selected.color-pink {
@@ -19813,7 +19813,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
 }
 .md .fab > a,
 .md .fab-buttons a {
-  background: #1993c7;
+  background: #1A80BB;
   width: 56px;
   height: 56px;
   border-radius: 28px;
@@ -19885,7 +19885,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
 }
 .md .fab-morph {
   border-radius: 28px;
-  background: #1993c7;
+  background: #1A80BB;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
@@ -19930,7 +19930,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
 .md .color-theme-blue .fab-buttons a,
 .md .color-theme-blue.fab > a,
 .md .color-theme-blue.fab-buttons a {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-blue .fab > a.active-state,
 .md .color-theme-blue .fab-buttons a.active-state,
@@ -19940,7 +19940,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
 }
 .md .color-theme-blue .fab-morph,
 .md .color-theme-blue.fab-morph {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-theme-pink .fab > a,
 .md .color-theme-pink .fab-buttons a,
@@ -20077,7 +20077,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
 .md .fab-buttons.color-blue a,
 .md .fab > a.color-blue,
 .md .fab .fab-buttons > a.color-blue {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .fab.color-blue > a.active-state,
 .md .fab.color-blue .fab-buttons > a.active-state,
@@ -20087,7 +20087,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
   background: #0c82df;
 }
 .md .fab-morph.color-blue {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .fab.color-pink > a,
 .md .fab.color-pink .fab-buttons > a,
@@ -21753,7 +21753,7 @@ html.device-desktop .data-table .sortable-cell:not(.sortable-cell-active):hover:
   top: 8px;
   width: 24px;
   height: 24px;
-  background: #1993c7;
+  background: #1A80BB;
   cursor: pointer;
   border-radius: 2px;
 }
@@ -22577,10 +22577,10 @@ button.swiper-pagination-bullet {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%232196f3'%2F%3E%3C%2Fsvg%3E");
 }
 .md .swiper-pagination-bullet-active {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .swiper-button-prev.color-red,
 .md .swiper-container-rtl .swiper-button-next.color-red,
@@ -22652,7 +22652,7 @@ button.swiper-pagination-bullet {
 }
 .md .color-blue .swiper-pagination-bullet-active,
 .md .color-theme-blue .swiper-pagination-bullet-active {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .color-blue .swiper-pagination-progressbar,
 .md .color-theme-blue .swiper-pagination-progressbar,
@@ -22664,7 +22664,7 @@ button.swiper-pagination-bullet {
 .md .color-theme-blue .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
 .md .color-blue.swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
 .md .color-theme-blue.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-  background: #1993c7;
+  background: #1A80BB;
 }
 .md .swiper-button-prev.color-pink,
 .md .swiper-container-rtl .swiper-button-next.color-pink,
@@ -23465,7 +23465,7 @@ html.with-statusbar.device-iphone-x .notification {
 .md .notification-title {
   font-size: 12px;
   line-height: 1;
-  color: #1993c7;
+  color: #1A80BB;
 }
 .md .notification-subtitle {
   font-size: 14px;
@@ -24294,13 +24294,13 @@ iframe#viAd {
   border-color: #4caf50 !important;
 }
 .md .text-color-blue {
-  color: #1993c7 !important;
+  color: #1A80BB !important;
 }
 .md .bg-color-blue {
-  background-color: #1993c7 !important;
+  background-color: #1A80BB !important;
 }
 .md .border-color-blue {
-  border-color: #1993c7 !important;
+  border-color: #1A80BB !important;
 }
 .md .text-color-pink {
   color: #e91e63 !important;

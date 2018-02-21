@@ -1,21 +1,21 @@
 html, body {
-    background: #1993c7;
-    background-color: #1993c7;
+    background: #1A80BB;
+    background-color: #1A80BB;
 }
 
 html.with-panel-left-cover .statusbar,
 .statusbar {
-    background: #1993c7 !important;
+    background: #1A80BB !important;
     transition: 250ms;
 }
 
 #app, 
 #app .view {
-    background: #1993c7 !important;
+    background: #1A80BB !important;
 }
 
 .statusbar-overlay {
-    background: #1993c7 !important;
+    background: #1A80BB !important;
 }
 
 .demo-card-header-pic .card-header {
@@ -30,7 +30,7 @@ html.with-panel-left-cover .statusbar,
 }
 
 .ios .view .navbar {
-    background: #1993c7;
+    background: #1A80BB;
     color: #fff;
 }
 
@@ -86,7 +86,7 @@ html.with-panel-left-cover .statusbar,
         bottom: 0;
         color: #ffffff;
         padding: 2px 8px 0 8px;
-        background: #1993c7;
+        background: #1A80BB;
     }
 
 .book .titlebar {
