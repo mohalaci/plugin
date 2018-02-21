@@ -29,8 +29,14 @@ var app = new Framework7({
   },*/
   // ... other parameters
 });
+var $$ = Dom7;
 var mainView = app.views.create('.view-main');
 var ptr = app.ptr.create('.ptr-content');
+
+var ptrContent = $$('.ptr-content');
+$ptrContent.on('ptr:refresh', function (e) {
+  app.ptr.done();
+});
 
 app.on('click', function (page) {
   // do something on page init
