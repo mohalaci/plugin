@@ -26,7 +26,7 @@ var app = new Framework7({
   },
   statusbar: {
     enabled: true,
-    overlay: 'auto',
+    overlay: true,
     iosOverlaysWebView: true,
     iosBackgroundColor: '#2196f3',
     materialBackgroundColor: '#2196f3'
@@ -40,6 +40,10 @@ var ptrContent = $$('.ptr-content');
 ptrContent.on('ptr:refresh', function (e) {
   app.ptr.done();
 });
+
+app.statusbar.show();
+app.statusbar.setIosTextColor('white');
+app.statusbar.setBackgroundColor('#2196f3');
 
 app.on('click', function (page) {
   // do something on page init
