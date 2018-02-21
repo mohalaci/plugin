@@ -28,8 +28,8 @@ var app = new Framework7({
     enabled: true,
     overlay: true,
     iosOverlaysWebView: false,
-    iosBackgroundColor: '#2196f3',
-    materialBackgroundColor: '#2196f3'
+    iosBackgroundColor: '#1993c7',
+    materialBackgroundColor: '#1993c7'
   }
 });
 var $$ = Dom7;
@@ -42,7 +42,7 @@ ptrContent.on('ptr:refresh', function (e) {
 });
 
 app.statusbar.setIosTextColor('white');
-app.statusbar.setBackgroundColor('#2196f3');
+app.statusbar.setBackgroundColor('#1993c7');
 
 // iOS status bar auto scroll
 if ($('html.ios').length > 0) {
