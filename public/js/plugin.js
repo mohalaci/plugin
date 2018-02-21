@@ -26,7 +26,7 @@ var app = new Framework7({
   },
   statusbar: {
     enabled: true,
-    overlay: 'auto',
+    overlay: true,
     iosOverlaysWebView: false,
     iosBackgroundColor: '#2196f3',
     materialBackgroundColor: '#2196f3'
@@ -45,8 +45,7 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#2196f3');
 
 app.on('init', function(appData) {
-  $('body').scrollTop(20);
-  $('#app').scrollTop(20);
+  $('.page-content').scrollTop(20); // status bar auto scroll
 });
 
 app.on('click', function (page) {
