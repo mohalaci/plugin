@@ -34,7 +34,7 @@ var mainView = app.views.create('.view-main');
 var ptr = app.ptr.create('.ptr-content');
 
 var ptrContent = $$('.ptr-content');
-$ptrContent.on('ptr:refresh', function (e) {
+ptrContent.on('ptr:refresh', function (e) {
   app.ptr.done();
 });
 
