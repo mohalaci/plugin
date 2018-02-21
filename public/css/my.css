@@ -10,7 +10,8 @@ html.with-panel-left-cover .statusbar,
 }
 
 #app, 
-#app .view {
+#app .view,
+#app .view .page {
     background: #2196f3 !important;
 }
 
