@@ -44,7 +44,6 @@ ptrContent.on('ptr:refresh', function (e) {
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#2196f3');
 
-console.log('init OK');
 $('body').scrollTop(20);
 $('.view').scrollTop(20);
 $('.page-content').scrollTop(20); // status bar auto scroll
