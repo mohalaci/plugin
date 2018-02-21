@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <!-- Required meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
@@ -13,71 +13,91 @@
     <!-- Path to Framework7 Library CSS, Material Theme -->
     <link rel="stylesheet" href="/dist/css/framework7.ios.css">
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="/my.css">
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/my.css">
     <!--<link rel="stylesheet" href="dist/css/framework7.material.min.css">-->
     <link rel="stylesheet" href="/dist/css/framework7.css">
 
-  </head>
-  <body>
+</head>
+<body>
     <!-- App root element -->
     <div id="app">
-      <!-- Statusbar overlay -->
-      <div class="statusbar"></div>
+        <!-- Statusbar overlay -->
+        <div class="statusbar"></div>
 
-      <!-- Your main view, should have "view-main" class -->
-      <div class="view view-main">
-        <!-- Initial Page, "data-name" contains page name -->
-        <div data-name="home" class="page">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="home" class="page">
 
-          <!-- Top Navbar -->
-          <div class="navbar">
-            <div class="navbar-inner">
-              <div class="left">
-                <a id="backButton" href="#" onclick="closePlugin();" class="link">
-                  <i class="icon icon-back"></i>
-                  <span>Back</span>
-                </a>
-              </div>
-              <div class="title">Awesome App</div>
-        
+                <!-- Top Navbar -->
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <a id="backButton" href="#" onclick="closePlugin();" class="link">
+                                <i class="icon icon-back"></i>
+                                <span>Back</span>
+                            </a>
+                        </div>
+                        <div class="title">Barion Bookstore</div>
+
+                    </div>
+                </div>
+
+                <!-- Toolbar -->
+                <!--   <div class="toolbar">
+                     <div class="toolbar-inner"> -->
+                <!-- Toolbar links -->
+                <!--<a href="#" class="link">Link 1</a>
+                    <a href="#" class="link">Link 2</a>
+                  </div>
+                </div>-->
+                <!-- Scrollable page content -->
+                <div class="page-content">
+                    <div class="card demo-card-header-pic">
+                        <div class="card-content card-content-padding book">
+                            <div class="book-header">
+                                <img class="book-cover" src="/img/neuromancer.jpg" width="80" height="120" />
+                                <strong class="title">NEUROMANCER</strong><br />
+                                <span class="author">William Gibson</span>
+                                <div class="rating">
+                                    <small>Rating: <b>4.5</b> <i>(326 reviews)</i></small><br />
+                                    <span class="icon icon-star-full"></span>
+                                    <span class="icon icon-star-full"></span>
+                                    <span class="icon icon-star-full"></span>
+                                    <span class="icon icon-star-full"></span>
+                                    <span class="icon icon-star-half"></span>
+                                </div>
+                                <span class="price">€ 9.99</span>
+                            </div>
+                            <div class="titlebar">
+                                <span>DETAILS</span>
+                            </div>
+                            <div class="book-details">
+                                <ul>
+                                    <li>Publisher: <b>ACE, 1984</b></li>
+                                    <li>Media type: <b>Hardback</b></li>
+                                    <li>Pages: <b>271</b></li>
+                                    <li>ISBN: <b>0441569560</b></li>
+                                    <li>Availability: <b>in stock</b></li>
+                                </ul>
+                            </div>
+                            <div class="titlebar">
+                                <span>SUMMARY</span>
+                            </div>
+                            <div class="book-summary">Neuromancer is a 1984 science fiction novel by American-Canadian writer William Gibson. It is one of the best-known works in the cyberpunk genre and the first novel to win the Nebula Award, the Philip K. Dick Award, and the Hugo Award. It was Gibson's debut novel and the beginning of the Sprawl trilogy. The novel tells the story of a washed-up computer hacker hired by a mysterious employer to pull off the ultimate hack.</div>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <button id="payWithBarionButton" class="col button button-big">Buy with Barion</button>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <!-- Toolbar -->
-       <!--   <div class="toolbar">
-            <div class="toolbar-inner"> -->
-              <!-- Toolbar links -->
-              <!--<a href="#" class="link">Link 1</a>
-              <a href="#" class="link">Link 2</a>
-            </div>
-          </div>-->
-
-          <!-- Scrollable page content -->
-          <div class="page-content">
-            <div class="card demo-card-header-pic">
-  <div style="background-image:url(/book_image.png)" class="card-header align-items-flex-end">Journey To Mountains</div>
-  <div class="card-content card-content-padding">
-    <p class="date">Posted on January 21, 2015</p>
-    <p>Vedd meg ezt a csoda konyvet es meglatod jo lesz neked. De tenyleg. Nekem is jo.<br>Ott van lent a Pay with Barion gomb, nyomas ra aztan egybol a tied lehet!</p>
-  </div>
-  <div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>
-</div>
-
-            <div class="block">
-  <p class="row">
-    <button id="payWithBarionButton" class="col button button-big">Buy</button>
-  </p>
-  
-</div>
-            <!-- Link to another page -->
-           <!-- <a href="/about/">About app</a> -->
-          </div>
         </div>
-      </div>
     </div>
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="/dist/js/framework7.js"></script>
     <!-- Path to your app js-->
-    <script type="text/javascript" src="/plugin.js"></script>
-  </body>
+    <script type="text/javascript" src="/js/plugin.js"></script>
+</body>
 </html>
