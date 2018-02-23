@@ -44,13 +44,17 @@ ptrContent.on('ptr:refresh', function (e) {
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
-// iOS status bar auto scroll
-if ($('html.ios').length > 0) {
-  $('body').scrollTop(20);
-  $('.view').scrollTop(20);
-} else {
-  app.statusbar.hide();
-}
+app.on('init', function(){
+
+  // iOS status bar auto scroll
+  if ($('html.ios').length > 0) {
+    $('body').scrollTop(20);
+    $('.view').scrollTop(20);
+  } else {
+    app.statusbar.hide();
+  }
+
+});
 
 app.on('click', function (page) {
   // do something on page init
