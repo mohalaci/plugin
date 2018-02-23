@@ -48,6 +48,8 @@ app.statusbar.setBackgroundColor('#1A80BB');
 if ($('html.ios').length > 0) {
   $('body').scrollTop(20);
   $('.view').scrollTop(20);
+} else {
+  app.statusbar.hide();
 }
 
 app.on('click', function (page) {
