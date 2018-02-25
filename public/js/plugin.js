@@ -16,8 +16,8 @@ var app = new Framework7({
       url: 'done.html'
     },
     {
-      path: '/undone.html',
-      url: 'undone.html'
+      path: '/failed.html',
+      url: 'failed.html'
     }
   ],
   navbar: {
