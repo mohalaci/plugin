@@ -261,11 +261,6 @@ app.get('/plugin', function (req, res) {
     //__dirname : It will resolve to your project folder.
 });
 
-app.get('/booklist', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
-    //__dirname : It will resolve to your project folder.
-});
-
 var server = app.listen(8083, function () {
     var host = server.address().address
     var port = server.address().port

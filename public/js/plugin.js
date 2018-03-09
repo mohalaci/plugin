@@ -11,7 +11,7 @@ var app = new Framework7({
         {
             name: 'bookdetails',
             path: '/bookdetails/',
-            url: 'bookdetails.html',
+            url: '/bookdetails.html',
             on: {
                 pageInit: function (e, page) {
                     if ($selectedBook > 0) {
