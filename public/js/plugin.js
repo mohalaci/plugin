@@ -64,7 +64,7 @@ function postToBarionHandler(message) {
                 && typeof window.webkit.messageHandlers.barionPluginHandler != "undefined") ? window.webkit.messageHandlers.barionPluginHandler : null;
     }
     if (typeof handler != "undefined" && handler != null) {
-        handler.postMessage(JSON.stringify(messageToPost));
+        handler.postMessage(JSON.stringify(message));
     } else {
         alert("Handler is not attached.\r\nJSON: " + message);
     }
