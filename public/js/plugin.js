@@ -81,11 +81,13 @@ function generatePaymentId() {
         },
         success: function(data, status, xhr) {
             if (status == "success") {
-                var messageToPost = {
+                var messageJson = {
                     'action': 'Pay', 
                     'paymentId': data.paymentId
                 };
-                postToBarionHandler(JSON.stringify(messageToPost));
+                var message = JSON.stringify(messageJson);
+                console.log(message);
+                postToBarionHandler(message);
             } else {
                 alert("Request finished with status code '" + status + "', could not process response.");
             }
