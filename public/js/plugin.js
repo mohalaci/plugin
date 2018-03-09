@@ -71,19 +71,30 @@ function postToBarionHandler(message) {
 }
 
 function generatePaymentId() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          var myObject = JSON.parse(this.responseText);
-          var messageToPost = {
-              'action': 'Pay', 
-              'paymentId': myObject.paymentId
-          };
-          postToBarionHandler(JSON.stringify(messageToPost));
-      }
-    };
-    xhttp.open("GET", "https://plugin.mobileappdev.org/genpayment", true);
-    xhttp.send();
+    $("#payWithBarionButton").addClass('disabled').attr('disabled', 'disabled');
+    $.ajax({
+        method: "GET",
+        url: "https://plugin.mobileappdev.org/genpayment",
+        dataType: "json",
+        error: function(xhr, status, error) {
+            alert("ERROR: " + error + "\r\nStatus: " + status);
+        },
+        success: function(data, status, xhr) {
+            if (status == 200) {
+                var response = JSON.parse(data.responseText);
+                var messageToPost = {
+                    'action': 'Pay', 
+                    'paymentId': response.paymentId
+                };
+                postToBarionHandler(JSON.stringify(messageToPost));
+            } else {
+                alert("Request finished with status code " + status + ", could not process response.");
+            }
+        },
+        complete: function() {
+            $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
+        }
+    });
 }
 
 function successfulPaymentCallback(data) {
