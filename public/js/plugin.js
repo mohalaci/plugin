@@ -81,10 +81,9 @@ function generatePaymentId() {
         },
         success: function(data, status, xhr) {
             if (status == "success") {
-                var response = JSON.parse(data.responseText);
                 var messageToPost = {
                     'action': 'Pay', 
-                    'paymentId': response.paymentId
+                    'paymentId': data.paymentId
                 };
                 postToBarionHandler(JSON.stringify(messageToPost));
             } else {
