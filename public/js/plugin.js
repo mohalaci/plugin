@@ -105,7 +105,7 @@ function generatePaymentId() {
     $("#payWithBarionButton").addClass('disabled').attr('disabled', 'disabled');
     var book = books[$selectedBook - 1];
     $.ajax({
-        method: "GET",
+        method: "POST",
         url: "/genpayment",
         data: {
             bookAuthor: book.bookAuthor,

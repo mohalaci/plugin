@@ -98,7 +98,7 @@ app.use(express.static('public'));
 Method - GET
 Generate a payment in Barion Test environment and return the paymentId parameter
 */
-app.get('/genpayment', function (req, res) {
+app.post('/genpayment', urlencodedParser, function (req, res) {
     var paymentStartRequestBuilder = new BarionRequestBuilderFactory.BarionPaymentStartRequestBuilder();
     console.log(req);
     var paymentStartOptionsWithObject = {
@@ -113,15 +113,15 @@ app.get('/genpayment', function (req, res) {
             {
                 POSTransactionId: "test_payment_id_from_shop",
                 Payee: "testshop@barion.com",
-                Total: req.bookPrice,
+                Total: req.body.bookPrice,
                 Items: [
                     {
                         Name: req.bookAuthor+": "+req.bookTitle,
-                        Description: req.bookPublisher+", ISBN "+req.bookISBN,
+                        Description: req.body.bookPublisher + ", ISBN " + req.body.bookISBN,
                         Quantity: 1,
                         Unit: "db",
-                        UnitPrice: req.bookPrice,
-                        ItemTotal: req.bookPrice
+                        UnitPrice: req.body.bookPrice,
+                        ItemTotal: req.body.bookPrice
                     }
                 ]
             }
