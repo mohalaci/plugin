@@ -46,7 +46,7 @@
     <script id="listTemplate" type="text/template7">
         <ul class="book-list">
             {{#each books}}
-            <li class="book-list-item">
+            <li class="book-list-item" data-book-id="{{bookId}}">
                 <div class="card demo-card-header-pic">
                     <div class="card-content card-content-padding book">
                         <div class="book-header">
@@ -54,7 +54,7 @@
                             <strong class="title">{{bookTitle}}</strong><br />
                             <span class="author">{{bookAuthor}}</span>
                             <span class="price">{{bookPrice}} Ft</span>
-                            <span class="details"><a class="book-link" href="/bookdetails/" data-book-id="{{bookId}}">Details &raquo;</a></span>
+                            <!--<span class="details"><a class="book-link" href="/bookdetails/" data-book-id="{{bookId}}">Details &raquo;</a></span>-->
                         </div>
                     </div>
                 </div>

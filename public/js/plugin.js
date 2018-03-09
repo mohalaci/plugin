@@ -70,6 +70,12 @@ $(document).ready(function () {
     $(document).on('click', "#payWithBarionButton", generatePaymentId);
     $(document).on('click', "#resultButton", closePlugin);
     $(document).on('click', "#exitButton", closePlugin);
+
+    $(document).on('click', ".book-list-item", function () {
+        $selectedBook = $(this).attr("data-book-id");
+        mainView.router.navigate('/bookdetails/');
+    });
+
     $(document).on('click', ".back-link", function () {
         mainView.router.back();
     });
