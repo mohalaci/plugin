@@ -79,11 +79,7 @@ function genPaymentId() {
           var messageToPost = {
           'action':'Pay', 'paymentId':myObject.paymentId
           };
-          if (window.webkit && window.webkit.messageHandlers){
-              window.webkit.messageHandlers.barionPluginHandler.postMessage(JSON.stringify(messageToPost));
-          } else {
-              barionPluginHandler.postMessage(JSON.stringify(messageToPost));
-          }
+          postToBarionHandler(JSON.stringify(messageToPost));
       }
     };
     xhttp.open("GET", "https://plugin.mobileappdev.org/genpayment", true);
@@ -96,6 +92,15 @@ function successfulPaymentCallback(data) {
 
 function unSuccessfulPaymentCallback(data) {
     window.location.href = "/failed.html";
+}
+
+function postToBarionHandler(message) {
+    var handler = (window.webkit && window.webkit.messageHandlers) ? window.webkit.messageHandlers.barionPluginHandler : barionPluginHandler;
+    if (handler != null && typeof handler != "undefined") {
+        handler.postMessage(JSON.stringify(messageToPost));
+    } else {
+        alert("Handler is not attached.\r\nJSON: " + message);
+    }
 }
 
 function closePlugin() {
