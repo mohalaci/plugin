@@ -70,14 +70,13 @@ app.on('init', function(){
 });
 
 function genPaymentId() {
-    $("#payWithBarionButton").attr('disabled', 'disabled');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-      $("#payWithBarionButton").removeAttr('disabled');
       if (this.readyState == 4 && this.status == 200) {
           var myObject = JSON.parse(this.responseText);
           var messageToPost = {
-          'action':'Pay', 'paymentId':myObject.paymentId
+              'action': 'Pay', 
+              'paymentId': myObject.paymentId
           };
           postToBarionHandler(JSON.stringify(messageToPost));
       }
