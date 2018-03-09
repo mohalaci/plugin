@@ -54,7 +54,7 @@ $(document).ready(function () {
     $(document).on('click', "#backButton", closePlugin);
 });
 
-function postToBarionHandler(message) {
+function postToBarionHandler(obj) {
     var handler = null;
     if (typeof barionPluginHandler != "undefined") {
         handler = barionPluginHandler;
@@ -81,12 +81,11 @@ function generatePaymentId() {
         },
         success: function(data, status, xhr) {
             if (status == "success") {
-                var messageJson = {
+                var messageObj = {
                     'action': 'Pay', 
                     'paymentId': data.paymentId
                 };
-                var message = JSON.stringify(messageJson);
-                postToBarionHandler(message);
+                postToBarionHandler(messageObj);
             } else {
                 alert("Request finished with status code '" + status + "', could not process response.");
             }
