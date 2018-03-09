@@ -18,6 +18,22 @@ html.with-panel-left-cover .statusbar,
     background: #1A80BB !important;
 }
 
+.statusbar {
+  transform: translate3d(0px, 0px, 0px) !important;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 125px;
+}
+
+.navbar {
+  transform: translate3d(0px, 0px, 0px) !important;
+  position: fixed;
+  top: 20px;
+  left: 0px;
+  z-index: 125px;
+}
+
 .demo-card-header-pic .card-header {
     height: 40vw;
     background-size: cover;
