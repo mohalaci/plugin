@@ -46,30 +46,31 @@ app.on('init', function(){
     } else {
         app.statusbar.hide();
     }
-    
-    var payButton = document.getElementById("payWithBarionButton");
-    if (payButton != null) {
-        payButton.addEventListener("click", function() {
-            genPaymentId();
-            }, false
-        );
-    }
-    var closeButton = document.getElementById("resultButton");
-    if (closeButton != null) {
-        closeButton.addEventListener("click", function(){
-          closePlugin();
-        }, false);
-    }
-    
-    var backButton = document.getElementById("backButton");
-    if (backButton != null) {
-        backButton.addEventListener("click", function(){
-          closePlugin();
-        }, false);
-    }
 });
 
-function genPaymentId() {
+$(document).ready(function () {
+    $(document).on('click', "#payWithBarionButton", generatePaymentId);
+    $(document).on('click', "#resultButton", closePlugin);
+    $(document).on('click', "#backButton", closePlugin);
+});
+
+function postToBarionHandler(message) {
+    var handler = null;
+    if (typeof barionPluginHandler != "undefined") {
+        handler = barionPluginHandler;
+    } else {
+        handler = (typeof window.webkit != "undefined" 
+                && typeof window.webkit.messageHandlers != "undefined" 
+                && typeof window.webkit.messageHandlers.barionPluginHandler != "undefined") ? window.webkit.messageHandlers.barionPluginHandler : null;
+    }
+    if (typeof handler != "undefined" && handler != null) {
+        handler.postMessage(JSON.stringify(messageToPost));
+    } else {
+        alert("Handler is not attached.\r\nJSON: " + message);
+    }
+}
+
+function generatePaymentId() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -93,27 +94,7 @@ function unSuccessfulPaymentCallback(data) {
     window.location.href = "/failed.html";
 }
 
-function postToBarionHandler(message) {
-    var handler = null;
-    if (typeof barionPluginHandler != "undefined") {
-        handler = barionPluginHandler;
-    } else {
-        handler = (typeof window.webkit != "undefined" 
-                && typeof window.webkit.messageHandlers != "undefined" 
-                && typeof window.webkit.messageHandlers.barionPluginHandler != "undefined") ? window.webkit.messageHandlers.barionPluginHandler : null;
-    }
-    if (typeof handler != "undefined" && handler != null) {
-        handler.postMessage(JSON.stringify(messageToPost));
-    } else {
-        alert("Handler is not attached.\r\nJSON: " + message);
-    }
-}
-
 function closePlugin() {
     var messageToPost = {'action':'close'};
-    if (window.webkit && window.webkit.messageHandlers){
-        window.webkit.messageHandlers.barionPluginHandler.postMessage(JSON.stringify(messageToPost));      
-    } else {
-        barionPluginHandler.postMessage(JSON.stringify(messageToPost));
-    }  
+    postToBarionHandler(JSON.stringify(messageToPost));
 }
