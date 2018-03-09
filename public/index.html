@@ -1,93 +1,105 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
-    <!-- Color theme for statusbar -->
     <meta name="theme-color" content="#1A80BB">
-    <!-- Your app title -->
     <title>Barion Bookstore</title>
-    <!-- Path to Framework7 Library CSS, Material Theme -->
     <link rel="stylesheet" href="/dist/css/framework7.ios.css">
-    <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/my.css">
-    <!--<link rel="stylesheet" href="dist/css/framework7.material.min.css">-->
     <link rel="stylesheet" href="/dist/css/framework7.barion.css">
 </head>
 <body>
-    <!-- App root element -->
     <div id="app">
-        <!-- Statusbar overlay -->
         <div class="statusbar"></div>
-
-        <!-- Your main view, should have "view-main" class -->
         <div class="view view-main">
-            <!-- Initial Page, "data-name" contains page name -->
-            <div data-name="home" class="page">
-
-                <!-- Top Navbar -->
+            
+            <!-- PAGE 1 - List -->
+            <div class="page" data-name="booklist">
                 <div class="navbar">
                     <div class="navbar-inner">
                         <div class="left">
-                            <a id="backButton" href="#" class="link">
+                            <a id="exitButton" href="#" class="link">
                                 <i class="icon icon-back"></i>
-                                <span>Back</span>
+                                <span>Exit</span>
                             </a>
                         </div>
                         <div class="title">Barion Bookstore</div>
-
                     </div>
                 </div>
 
-                <!-- Scrollable page content -->
                 <div class="page-content">
-                    <div class="card demo-card-header-pic">
-                        <div class="card-content card-content-padding book">
-                            <div class="book-header">
-                                <img class="book-cover" src="/img/neuromancer.jpg" width="80" height="120" />
-                                <strong class="title">NEUROMANCER</strong><br />
-                                <span class="author">William Gibson</span>
-                                <div class="rating">
-                                    <small>Rating: <b>4.5</b> <i>(326 reviews)</i></small><br />
-                                    <span class="icon icon-star-full"></span>
-                                    <span class="icon icon-star-full"></span>
-                                    <span class="icon icon-star-full"></span>
-                                    <span class="icon icon-star-full"></span>
-                                    <span class="icon icon-star-half"></span>
-                                </div>
-                                <span class="price">€ 9.99</span>
-                            </div>
-                            <div class="titlebar">
-                                <span>DETAILS</span>
-                            </div>
-                            <div class="book-details">
-                                <ul>
-                                    <li>Publisher: <b>ACE, 1984</b></li>
-                                    <li>Media type: <b>Hardback</b></li>
-                                    <li>ISBN: <b>0441569560</b></li>
-                                    <li>Availability: <b>in stock</b></li>
-                                </ul>
-                            </div>
-                            <div class="titlebar">
-                                <span>SUMMARY</span>
-                            </div>
-                            <div class="book-summary">Neuromancer is a 1984 science fiction novel by American-Canadian writer William Gibson. It was Gibson's debut novel and the beginning of the Sprawl trilogy. The novel tells the story of a washed-up computer hacker hired by a mysterious employer to pull off the ultimate hack.</div>
-                        </div>
-                    </div>
-                    <div class="block">
-                        <input type="button" id="payWithBarionButton" class="col button button-big" value="Buy with Barion" />
-                    </div>
+                    <div class="list-template"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Path to jQuery JS -->
+
+    <!-- JavaScript files -->
     <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
-    <!-- Path to Framework7 Library JS -->
     <script type="text/javascript" src="/dist/js/framework7.js"></script>
-    <!-- Path to your app JS -->
+    <script type="text/javascript" src="/js/books.js"></script>
     <script type="text/javascript" src="/js/plugin.js"></script>
+
+    <!-- Templates -->
+    <script id="listTemplate" type="text/template7">
+        <ul class="book-list">
+            {{#each books}}
+            <li class="book-list-item">
+                <div class="card demo-card-header-pic">
+                    <div class="card-content card-content-padding book">
+                        <div class="book-header">
+                            <img class="book-cover" src="{{bookImage}}" width="64" height="80" />
+                            <strong class="title">{{bookTitle}}</strong><br />
+                            <span class="author">{{bookAuthor}}</span>
+                            <span class="price">{{bookPrice}} Ft</span>
+                            <span class="details"><a class="book-link" href="/bookdetails/" data-book-id="{{bookId}}">Details &raquo;</a></span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script id="detailsTemplate" type="text/template7">
+        <div class="card demo-card-header-pic">
+            <div class="card-content card-content-padding book">
+                <div class="book-header">
+                    <img class="book-cover" src="{{bookImage}}" width="80" height="120" />
+                    <strong class="title">{{bookTitle}}</strong><br />
+                    <span class="author">{{bookAuthor}}</span>
+                    <div class="rating">
+                        <small>Rating: <b>{{bookRating}}</b> <i>({{bookReviews}} reviews)</i></small><br />
+                        <span class="icon icon-star-full"></span>
+                        <span class="icon icon-star-full"></span>
+                        <span class="icon icon-star-full"></span>
+                        <span class="icon icon-star-full"></span>
+                        <span class="icon icon-star-half"></span>
+                    </div>
+                    <span class="price">{{bookPrice}} Ft</span>
+                </div>
+                <div class="titlebar">
+                    <span>DETAILS</span>
+                </div>
+                <div class="book-details">
+                    <ul>
+                        <li>Publisher: <b>{{bookPublisher}}</b></li>
+                        <li>Media type: <b>{{bookType}}</b></li>
+                        <li>ISBN: <b>{{bookISBN}}</b></li>
+                        <li>Availability: <b>{{bookAvailability}}</b></li>
+                    </ul>
+                </div>
+                <div class="titlebar">
+                    <span>SUMMARY</span>
+                </div>
+                <div class="book-summary">{{bookSummary}}</div>
+            </div>
+        </div>
+        <div class="block">
+            <input type="button" id="payWithBarionButton" class="col button button-big" value="Buy with Barion" data-book-id="{{bookID}}" />
+        </div>
+    </script>
 </body>
 </html>
