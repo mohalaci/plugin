@@ -171,3 +171,21 @@ html.with-panel-left-cover .statusbar,
 .card + .block {
     margin-top: 15px !important;
 }
+
+.card.card-fail {
+    background: #ff4a00;
+}
+
+.card.card-fail .result {
+    color: #ffffff;
+    padding: 8px;
+}
+
+.card.card-success {
+    background: #44af00;
+}
+
+    .card.card-success .result {
+        color: #ffffff;
+        padding: 8px;
+    }
