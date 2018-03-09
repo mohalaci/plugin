@@ -29,12 +29,6 @@ var app = new Framework7({
 });
 var $$ = Dom7;
 var mainView = app.views.create('.view-main');
-var ptr = app.ptr.create('.ptr-content');
-
-var ptrContent = $$('.ptr-content');
-ptrContent.on('ptr:refresh', function (e) {
-    app.ptr.done();
-});
 
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
