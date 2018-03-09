@@ -116,7 +116,7 @@ app.post('/genpayment', urlencodedParser, function (req, res) {
                 Total: req.body.bookPrice,
                 Items: [
                     {
-                        Name: req.bookAuthor+": "+req.bookTitle,
+                        Name: req.body.bookAuthor + ": " + req.body.bookTitle,
                         Description: req.body.bookPublisher + ", ISBN " + req.body.bookISBN,
                         Quantity: 1,
                         Unit: "db",
@@ -263,11 +263,6 @@ app.get('/plugin', function (req, res) {
 
 app.get('/booklist', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
-    //__dirname : It will resolve to your project folder.
-});
-
-app.get('/bookdetails', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/bookdetails.html'));
     //__dirname : It will resolve to your project folder.
 });
 
