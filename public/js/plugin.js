@@ -95,12 +95,14 @@ function unSuccessfulPaymentCallback(data) {
 
 function postToBarionHandler(message) {
     var handler = null;
-    if (barionPluginHandler != null && typeof barionPluginHandler != "undefined") {
+    if (typeof barionPluginHandler != "undefined") {
         handler = barionPluginHandler;
     } else {
-        handler = (window.webkit != null && window.webkit.messageHandlers) ? window.webkit.messageHandlers.barionPluginHandler : null;
+        handler = (typeof window.webkit != "undefined" 
+                && typeof window.webkit.messageHandlers != "undefined" 
+                && typeof window.webkit.messageHandlers.barionPluginHandler != "undefined") ? window.webkit.messageHandlers.barionPluginHandler : null;
     }
-    if (handler != null && typeof handler != "undefined") {
+    if (typeof handler != "undefined" && handler != null) {
         handler.postMessage(JSON.stringify(messageToPost));
     } else {
         alert("Handler is not attached.\r\nJSON: " + message);
