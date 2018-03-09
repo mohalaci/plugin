@@ -112,6 +112,6 @@ function unSuccessfulPaymentCallback(data) {
 }
 
 function closePlugin() {
-    var messageToPost = {'action':'close'};
-    postToBarionHandler(JSON.stringify(messageToPost));
+    var closeObj = {'action':'close'};
+    postToBarionHandler(closeObj);
 }
