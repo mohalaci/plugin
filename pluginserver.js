@@ -100,7 +100,7 @@ Generate a payment in Barion Test environment and return the paymentId parameter
 */
 app.get('/genpayment', function (req, res) {
     var paymentStartRequestBuilder = new BarionRequestBuilderFactory.BarionPaymentStartRequestBuilder();
-    
+    console.log(req);
     var paymentStartOptionsWithObject = {
         POSKey: "ec5abfa2-5eea-42db-9568-b9a4cf825b88",
         PaymentType: "Immediate",
@@ -127,6 +127,8 @@ app.get('/genpayment', function (req, res) {
             }
         ]
     };
+
+    console.log(paymentStartOptionsWithObject);
 
     var paymentData;
     async.series([
