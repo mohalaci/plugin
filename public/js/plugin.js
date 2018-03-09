@@ -80,7 +80,7 @@ function generatePaymentId() {
             alert("ERROR: " + error + "\r\nStatus: " + status);
         },
         success: function(data, status, xhr) {
-            if (status == 200) {
+            if (status == "success") {
                 var response = JSON.parse(data.responseText);
                 var messageToPost = {
                     'action': 'Pay', 
@@ -88,7 +88,7 @@ function generatePaymentId() {
                 };
                 postToBarionHandler(JSON.stringify(messageToPost));
             } else {
-                alert("Request finished with status code " + status + ", could not process response.");
+                alert("Request finished with status code '" + status + "', could not process response.");
             }
         },
         complete: function() {
