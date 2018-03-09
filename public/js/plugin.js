@@ -52,6 +52,12 @@ $(document).ready(function () {
     $(document).on('click', "#payWithBarionButton", generatePaymentId);
     $(document).on('click', "#resultButton", closePlugin);
     $(document).on('click', "#backButton", closePlugin);
+    
+    $(document).on('click', ".navbar, .statusbar", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
 });
 
 function postToBarionHandler(obj) {
