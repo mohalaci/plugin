@@ -26,12 +26,12 @@ var app = new Framework7({
             pushState: true
         },
         {
-            path: '/done.html',
-            url: 'done.html'
+            path: '/done/',
+            url: '/done.html'
         },
         {
-            path: '/failed.html',
-            url: 'failed.html'
+            path: '/failed/',
+            url: '/failed.html'
         }
     ],
     navbar: {
