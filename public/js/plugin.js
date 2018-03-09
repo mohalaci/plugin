@@ -82,8 +82,10 @@ app.on('click', function (page) {
 );
 
 function genPaymentId(){
+  $("#payWithBarionButton").attr('disabled', 'disabled');
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
+    $("#payWithBarionButton").removeAttr('disabled');
     if (this.readyState == 4 && this.status == 200) {
       var myObject = JSON.parse(this.responseText);
      console.log(myObject.paymentId);
@@ -104,8 +106,6 @@ function genPaymentId(){
         } else {
           barionPluginHandler.postMessage(JSON.stringify(messageToPost));
         }
-     
-     
     }
   };
   xhttp.open("GET", "https://plugin.mobileappdev.org/genpayment", true);
