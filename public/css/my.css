@@ -172,6 +172,10 @@ html.with-panel-left-cover .statusbar,
     margin-top: 15px !important;
 }
 
+.card.touched {
+    background: #f2f2f2 !important;
+}
+
 .card.card-fail {
     background: #ff4a00;
 }
