@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#1A80BB">
     <title>Barion Bookstore</title>
+    <link rel="shortcut icon" href="/img/favicon.png">
     <link rel="stylesheet" href="/dist/css/framework7.ios.css">
     <link rel="stylesheet" href="/css/icons.css">
     <link rel="stylesheet" href="/css/my.css">
@@ -98,7 +99,34 @@
             </div>
         </div>
         <div class="block">
-            <input type="button" id="payWithBarionButton" class="col button button-big" value="Buy with Barion" data-book-id="{{bookID}}" />
+            <input type="button" id="setShippingButton" class="col button button-big" value="Continue to shipping address" data-book-id="{{bookID}}" />
+        </div>
+    </script>
+
+    <script id="summaryTemplate" type="text/template7">
+        <div class="card demo-card-header-pic">
+            <div class="card-content card-content-padding book">
+                <div class="book-header">
+                    <img class="book-cover" src="{{book.bookImage}}" width="80" height="120" />
+                    <strong class="title">{{book.bookTitle}}</strong><br />
+                    <span class="author">{{book.bookAuthor}}</span>
+                    <span class="price">{{book.bookPrice}} Ft</span>
+                </div>
+                <div class="titlebar">
+                    <span>SHIPPING ADDRESS</span>
+                </div>
+                <div class="book-details">
+                    <ul>
+                        <li>Name: <b>{{shipping.companyName}} {{shipping.firstName}} {{shipping.lastName}}</b></li>
+                        <li>Country: <b>{{shipping.country}}</b></li>
+                        <li>Town/city: <b>{{shipping.city}}</b></li>
+                        <li>Street address: <b>{{shipping.zip}} {{shipping.street}} {{shipping.streetNumber}}</b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <input type="button" id="payWithBarionButton" class="col button button-big hidden" value="Buy with Barion" data-book-id="{{bookID}}" />
         </div>
     </script>
 </body>
