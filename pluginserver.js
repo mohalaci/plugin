@@ -257,6 +257,7 @@ Method - GET
 Return plugin app
 */
 app.get('/plugin', function (req, res) {
+    res.setHeader('Cache-Control', 'public, max-age=31557600'); // one year
     res.sendFile(path.join(__dirname + '/public/index.html'));
     //__dirname : It will resolve to your project folder.
 });
