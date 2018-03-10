@@ -38,8 +38,7 @@ var app = new Framework7({
                     var content = compiledTemplate({ books: books });
                     $(".list-template").html(content);
                 }
-            },
-            pushState: true
+            }
         },
         {
             name: 'bookdetails',
@@ -55,8 +54,7 @@ var app = new Framework7({
                         $(".book-template").html(content);
                     }
                 }
-            },
-            pushState: true
+            }
         },
         {
             name: 'summary',
@@ -76,8 +74,7 @@ var app = new Framework7({
                         $(".summary-template").html(content);
                     }
                 }
-            },
-            pushState: true
+            }
         },
         {
             path: '/done/',
@@ -102,6 +99,7 @@ var app = new Framework7({
 });
 var $$ = Dom7;
 var mainView = app.views.create('.view-main');
+mainView.router.allowPageChange = true;
 
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
@@ -130,14 +128,23 @@ $(document).ready(function () {
         var $card = $(this).find('.card');
         $card.addClass('touched').fadeTo(100, 0.8, function () {
             $card.removeClass('touched');
-        }).fadeTo(1,1);
+        }).fadeTo(1, 1);
         $selectedBook = $(this).attr("data-book-id");
         mainView.router.navigate("/bookdetails/");
     });
 
-    $(document).on('click', ".back-link", function () {
-        mainView.router.navigate("/booklist/");
+    $(document).on('click', ".backToList-link", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        mainView.router.back('/booklist/', { force: true });
     });
+
+    $(document).on('click', ".backToDetails-link", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        mainView.router.back('/bookdetails/', { force: true });
+    });
+
     $(document).on('click', ".book-link", function () {
         $selectedBook = $(this).attr("data-book-id");
     });
@@ -203,6 +210,7 @@ function getPaymentId() {
 function getShippingAddress() {
     var shippingObj = { 'action': 'setshipping' };
     postToBarionHandler(shippingObj);
+    mainView.router.navigate('/summary/', { animate: false });
 }
 
 function setShippingAddress(shippingData) {
@@ -221,7 +229,17 @@ function setShippingAddress(shippingData) {
     } else {
         $shippingAddress = $defaultShipping;
     }
-    mainView.router.navigate("/summary/", { animate: false });
+    if ($selectedBook > 0 && $shippingAddress != null) {
+        var bookData = books[$selectedBook - 1];
+        var summaryData = {
+            book: bookData,
+            shipping: $shippingAddress
+        };
+        var summaryTemplate = $$('script#summaryTemplate').html();
+        var compiledTemplate = Template7.compile(summaryTemplate);
+        var content = compiledTemplate(summaryData);
+        $(".summary-template").html(content);
+    }
 }
 
 function successfulPaymentCallback(data) {
