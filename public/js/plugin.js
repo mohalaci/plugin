@@ -126,9 +126,7 @@ $(document).ready(function () {
 
     $(document).on('click', ".book-list-item", function () {
         var $card = $(this).find('.card');
-        $card.addClass('touched').fadeTo(100, 0.8, function () {
-            $card.removeClass('touched');
-        }).fadeTo(1, 1);
+        $card.addClass('touched');
         $selectedBook = $(this).attr("data-book-id");
         mainView.router.navigate("/bookdetails/");
     });
