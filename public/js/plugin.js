@@ -217,7 +217,7 @@ function setShippingAddress(shippingData) {
     } else {
         $shippingAddress = $defaultShipping;
     }
-    mainView.router.navigate("/summary/");
+    mainView.router.navigate("/summary/", { animate: false });
 }
 
 function successfulPaymentCallback(data) {
