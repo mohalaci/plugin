@@ -18,6 +18,10 @@ var $defaultShipping = {
     "companyName": "Test Inc."
 };
 
+var $cListTemplate;
+var $cDetailsTemplate;
+var $cSummaryTemplate;
+
 var app = new Framework7({
     root: '#app',
     name: 'My App',
@@ -33,9 +37,7 @@ var app = new Framework7({
             url: '/',
             on: {
                 pageInit: function (e, page) {
-                    var bookListTemplate = $$('script#listTemplate').html();
-                    var compiledTemplate = Template7.compile(bookListTemplate);
-                    var content = compiledTemplate({ books: books });
+                    var content = $cListTemplate({ books: books });
                     $(".list-template").html(content);
                 }
             }
@@ -48,9 +50,7 @@ var app = new Framework7({
                 pageInit: function (e, page) {
                     if ($selectedBook > 0) {
                         var bookData = books[$selectedBook - 1];
-                        var bookDetailsTemplate = $$('script#detailsTemplate').html();
-                        var compiledTemplate = Template7.compile(bookDetailsTemplate);
-                        var content = compiledTemplate(bookData);
+                        var content = $cDetailsTemplate(bookData);
                         $(".book-template").html(content);
                     }
                 }
@@ -68,9 +68,7 @@ var app = new Framework7({
                             book: bookData,
                             shipping: $shippingAddress
                         };
-                        var summaryTemplate = $$('script#summaryTemplate').html();
-                        var compiledTemplate = Template7.compile(summaryTemplate);
-                        var content = compiledTemplate(summaryData);
+                        var content = $cSummaryTemplate(summaryData);
                         $(".summary-template").html(content);
                     }
                 }
@@ -97,7 +95,9 @@ var app = new Framework7({
         materialBackgroundColor: '#1A80BB'
     }
 });
+
 var $$ = Dom7;
+
 var mainView = app.views.create('.view-main');
 mainView.router.allowPageChange = true;
 
@@ -114,9 +114,18 @@ app.on('init', function () {
 });
 
 $(document).ready(function () {
+
+    //pre-complie templates
     var bookListTemplate = $$('script#listTemplate').html();
-    var compiledTemplate = Template7.compile(bookListTemplate);
-    var content = compiledTemplate({ books: books });
+    $cListTemplate = Template7.compile(bookListTemplate);
+
+    var bookDetailsTemplate = $$('script#detailsTemplate').html();
+    $cDetailsTemplate = Template7.compile(bookDetailsTemplate);
+
+    var summaryTemplate = $$('script#summaryTemplate').html();
+    $cSummaryTemplate = Template7.compile(summaryTemplate);
+    
+    var content = $cListTemplate({ books: books });
     $(".list-template").html(content);
 
     $(document).on('click', "#payWithBarionButton", getPaymentId);
@@ -238,9 +247,7 @@ function setShippingAddress(shippingData) {
             book: bookData,
             shipping: $shippingAddress
         };
-        var summaryTemplate = $$('script#summaryTemplate').html();
-        var compiledTemplate = Template7.compile(summaryTemplate);
-        var content = compiledTemplate(summaryData);
+        var content = $cSummaryTemplate(summaryData);
         $(".summary-template").html(content);
     }
 }
