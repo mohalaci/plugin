@@ -211,6 +211,11 @@ function getShippingAddress() {
     mainView.router.navigate('/summary/', { animate: false });
 }
 
+function clearShippingAddress() {
+    $shippingAddress = null;
+    mainView.router.back('/bookdetails/', { force: true });
+}
+
 function setShippingAddress(shippingData) {
     if (typeof shippingData != "undefined" && shippingData != null) {
         var s = JSON.parse(shippingData);
