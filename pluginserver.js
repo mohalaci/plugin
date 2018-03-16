@@ -94,6 +94,11 @@ function clearPluginCollection(callback) {
 
 app.use(express.static('public'));
 
+app.post('/callback', urlencodedParser, function(req, res){
+   console.log(req);
+   res.status(200);
+}
+
 /*
 Method - GET
 Generate a payment in Barion Test environment and return the paymentId parameter
@@ -109,6 +114,7 @@ app.post('/genpayment', urlencodedParser, function (req, res) {
         PaymentRequestId: "request_id_generated_by_the_shop",
         Locale: "hu-HU",
         Currency: "HUF",
+        CallbackUrl: "https://plugin.mobileappdev.org/callback",
         Transactions: [
             {
                 POSTransactionId: "test_payment_id_from_shop",
