@@ -117,7 +117,7 @@ app.post('/genpayment', urlencodedParser, function (req, res) {
         PaymentRequestId: "request_id_generated_by_the_shop",
         Locale: "hu-HU",
         Currency: "HUF",
-        CallbackUrl: "https://plugin.mobileappdev.org/callback",
+        CallbackUrl: "https://plugin.mobileappdev.org/callback?do=ok",
         Transactions: [
             {
                 POSTransactionId: "test_payment_id_from_shop",
