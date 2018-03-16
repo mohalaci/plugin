@@ -95,7 +95,9 @@ function clearPluginCollection(callback) {
 app.use(express.static('public'));
 
 app.post('/callback', urlencodedParser, function(req, res){
-   console.log(req);
+    if (req != null){
+        console.log(req);
+    }
    res.status(200);
 }
 
