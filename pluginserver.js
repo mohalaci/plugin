@@ -98,7 +98,8 @@ app.post('/callback', urlencodedParser, function(req, res){
     if (req != null){
         console.log(req);
     }
-   res.status(200);
+    res.status(200);
+    res.json({status:"ok"});
 });
 
 /*
