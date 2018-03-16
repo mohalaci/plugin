@@ -99,7 +99,7 @@ app.post('/callback', urlencodedParser, function(req, res){
         console.log(req);
     }
    res.status(200);
-}
+});
 
 /*
 Method - GET
