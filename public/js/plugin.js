@@ -113,7 +113,7 @@ app.on('init', function () {
     }
 });
 
-$$(document).ready(function () {
+$$(document).on('DOMContentLoaded', function () {
 
     //pre-complie templates
     var bookListTemplate = $$('script#listTemplate').html();
