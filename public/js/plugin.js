@@ -113,7 +113,7 @@ app.on('init', function () {
     }
 });
 
-$(document).ready(function () {
+$$(document).ready(function () {
 
     //pre-complie templates
     var bookListTemplate = $$('script#listTemplate').html();
@@ -126,37 +126,37 @@ $(document).ready(function () {
     $cSummaryTemplate = Template7.compile(summaryTemplate);
     
     var content = $cListTemplate({ books: books });
-    $(".list-template").html(content);
+    $$(".list-template").html(content);
 
-    $(document).on('click', "#payWithBarionButton", getPaymentId);
-    $(document).on('click', "#setShippingButton", getShippingAddress);
-    $(document).on('click', "#resultButton", closePlugin);
-    $(document).on('click', "#exitButton", closePlugin);
+    $$(document).on('click', "#payWithBarionButton", getPaymentId);
+    $$(document).on('click', "#setShippingButton", getShippingAddress);
+    $$(document).on('click', "#resultButton", closePlugin);
+    $$(document).on('click', "#exitButton", closePlugin);
 
-    $(document).on('click', ".book-list-item", function () {
-        var $card = $(this).find('.card');
+    $$(document).on('click', ".book-list-item", function () {
+        var $card = $$(this).find('.card');
         $card.addClass('touched');
         $selectedBook = $(this).attr("data-book-id");
         mainView.router.navigate("/bookdetails/");
     });
 
-    $(document).on('click', ".backToList-link", function (e) {
+    $$(document).on('click', ".backToList-link", function (e) {
         e.preventDefault();
         e.stopPropagation();
         mainView.router.back('/booklist/', { force: true });
     });
 
-    $(document).on('click', ".backToDetails-link", function (e) {
+    $$(document).on('click', ".backToDetails-link", function (e) {
         e.preventDefault();
         e.stopPropagation();
         mainView.router.back('/bookdetails/', { force: true });
     });
 
-    $(document).on('click', ".book-link", function () {
-        $selectedBook = $(this).attr("data-book-id");
+    $$(document).on('click', ".book-link", function () {
+        $selectedBook = $$(this).attr("data-book-id");
     });
 
-    $(document).on('click', ".navbar, .statusbar", function (e) {
+    $$(document).on('click', ".navbar, .statusbar", function (e) {
         e.preventDefault();
         e.stopPropagation();
         return false;
