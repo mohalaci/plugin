@@ -87,7 +87,7 @@ var app = new Framework7({
             url: '/redirect.html',
             on: {
                 pageInit: function (e, page) {
-                    var query = page.query;
+                    var query = page.route.query;
                     console.log(query);
                     //var content = $cDetailsTemplate(bookData);
                     //$(".book-template").html(content);
