@@ -23,6 +23,9 @@ var BarionError = barion.BarionError;
 // Import the built-in requestbuilders
 var BarionRequestBuilderFactory = barion.BarionRequestBuilderFactory;
 
+var getPaymentStateRequestBuilder = new BarionRequestBuilderFactory.BarionGetPaymentStateRequestBuilder();
+
+
 /*
 Save plugin into the database
 */
@@ -102,6 +105,43 @@ app.post('/callback', urlencodedParser, function(req, res){
     res.json({status:"ok"});
 });
 
+app.get('/getpaymentstate', function(req, res){
+    var paymentId = req.query.paymentId
+    if (paymentId != null) {
+        var getPaymentStateOptionsWithBuilder = getPaymentStateRequestBuilder
+            .setPOSKey('ec5abfa2-5eea-42db-9568-b9a4cf825b88')
+            .setPaymentId(paymentId)
+            .build();
+
+        var paymentState;
+        async.series([
+        function (callback) {
+            barion.getPaymentState(getPaymentStateOptionsWithObject, function (err, data) {
+                if (err) {
+                    paymentData = "errror";
+                    callback()
+                } else {
+                    console.log("getPaymentState result, data: ")
+                    console.log(data)
+                    callback(data)
+                }
+            })
+        }], function (data) {
+            res.setHeader('Content-Type', 'application/json')
+            if (data) {
+                res.status(200)
+                console.log(JSON.stringify({ status: data.Status }))
+                res.json({ status: data.Status })
+            } else {
+                res.status(500)
+                res.json({ ERROR: "ERROR" })
+            }
+        })
+    }
+});
+
+
+
 /*
 Method - GET
 Generate a payment in Barion Test environment and return the paymentId parameter
@@ -117,6 +157,7 @@ app.post('/genpayment', urlencodedParser, function (req, res) {
         PaymentRequestId: "request_id_generated_by_the_shop",
         Locale: "hu-HU",
         Currency: "HUF",
+        RedirectUrl: "https://dev.plugin.mobileappdev.org/redirect",
         CallbackUrl: "https://dev.plugin.mobileappdev.org/callback?do=ok",
         Transactions: [
             {
