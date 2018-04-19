@@ -4,8 +4,10 @@ var app = new Framework7({
     name: 'My App',
     id: 'com.myapp.test',
     on: {
-        init: function () {
+        init: function (page) {
             console.log('App initialized');
+            var query = page.query;
+            console.log(query);
         }
     },
     routes: [
