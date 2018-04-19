@@ -4,9 +4,10 @@ var app = new Framework7({
     name: 'My App',
     id: 'com.myapp.test',
     on: {
-    init: function () {
-      console.log('App initialized'),
-    }},
+        init: function () {
+            console.log('App initialized');
+        }
+    },
     routes: [
         {
             path: '/',
