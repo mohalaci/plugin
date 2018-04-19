@@ -193,6 +193,31 @@ function postToBarionHandler(obj) {
     }
 }
 
+function getPaymentState(paymentId){
+    $.ajax({
+        method: "GET",
+        url: "/getpaymentstate?paymentId="+paymentId,
+        error: function (xhr, status, error) {
+            alert("ERROR: " + error + "\r\nStatus: " + status);
+        },
+        success: function (data, status, xhr) {
+            console.log(data);
+/*            if (status == "success") {
+                var messageObj = {
+                    'action': 'Pay',
+                    'paymentId': data.paymentId
+                };
+                redirectToBarionPaymentGateway(data.paymentId);
+            } else {
+                alert("Request finished with status code '" + status + "', could not process response.");
+            }*/
+        },
+        complete: function () {
+            $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
+        }
+    });
+}
+
 function getPaymentId() {
     $("#payWithBarionButton").addClass('disabled').attr('disabled', 'disabled');
     var book = books[$selectedBook - 1];
