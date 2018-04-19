@@ -45,13 +45,15 @@ var mainView = app.views.create('.view-main');
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
-app.on('init', function() {
+app.on('init', function(e) {
     if ($('html.ios').length > 0) {
         $('body').scrollTop(20);
         $('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
     }
+    var query = e.query;
+    console.log(query);
 });
 
 $(document).ready(function () {
