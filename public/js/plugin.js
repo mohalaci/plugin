@@ -200,7 +200,7 @@ function getPaymentState(paymentId){
         },
         success: function (data, status, xhr) {
             console.log(data);
-            if (status == "Succeeded") {
+            if (data.Status == "Succeeded") {
                 mainView.router.navigate('/done/', { animate: false });
             } else {
                 mainView.router.navigate('/failed/', { animate: false });
