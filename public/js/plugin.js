@@ -83,7 +83,7 @@ var app = new Framework7({
             url: '/failed.html'
         },
         {
-            path: '/redirect/',
+            path: '/redirect',
             url: '/redirect.html',
             on: {
                 pageInit: function (e, page) {
@@ -200,7 +200,7 @@ function getPaymentState(paymentId){
         },
         success: function (data, status, xhr) {
             console.log(data);
-            if (data.Status == "Succeeded") {
+            if (data.status == "Succeeded") {
                 mainView.router.navigate('/done/', { animate: false });
             } else {
                 mainView.router.navigate('/failed/', { animate: false });
