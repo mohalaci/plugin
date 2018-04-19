@@ -1,9 +1,12 @@
-var $selectedBook = 0;
 
 var app = new Framework7({
     root: '#app',
     name: 'My App',
     id: 'com.myapp.test',
+    on: {
+    init: function () {
+      console.log('App initialized'),
+    },
     routes: [
         {
             path: '/',
@@ -45,7 +48,7 @@ var mainView = app.views.create('.view-main');
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
-app.on('init', function(e) {
+app.on('init', function() {
     if ($('html.ios').length > 0) {
         $('body').scrollTop(20);
         $('.view').scrollTop(20);
