@@ -83,16 +83,13 @@ var app = new Framework7({
             url: '/failed.html'
         },
         {
-            path: '/redirect',
+            path: '/',
             url: '/redirect.html',
             on: {
                 pageInit: function (e, page) {
                     var query = page.route.query;
                     console.log(query);
                     getPaymentState(query.paymentId);
-                    //var content = $cDetailsTemplate(bookData);
-                    //$(".book-template").html(content);
-                    
                 }
             }
         }
