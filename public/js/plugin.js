@@ -201,9 +201,9 @@ function getPaymentState(paymentId){
         success: function (data, status, xhr) {
             console.log(data);
             if (data.status == "Succeeded") {
-                mainView.router.loadPage("done.html");
+                mainView.router.loadPage('done.html');
             } else {
-                mainView.router.loadPage("failed.html");
+                mainView.router.loadPage('failed.html');
             }
         },
         complete: function () {
