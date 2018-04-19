@@ -203,7 +203,7 @@ function getPaymentId() {
                     'action': 'Pay',
                     'paymentId': data.paymentId
                 };
-                postToBarionHandler(messageObj);
+                redirectToBarionPaymentGateway(data.paymentId);
             } else {
                 alert("Request finished with status code '" + status + "', could not process response.");
             }
@@ -212,6 +212,10 @@ function getPaymentId() {
             $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
         }
     });
+}
+
+function redirectToBarionPaymentGateway(paymentId){
+    window.location.href = "https://test.barion.com/pay?id="+paymentId;
 }
 
 function getShippingAddress() {
