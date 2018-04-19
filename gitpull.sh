@@ -1,2 +1,2 @@
 #!/bin/sh
-git -C /var/www/plugin/plugin/ pull
+git -C /var/www/plugin_dev/plugin/ pull origin dev

@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 // database variables
 var mongo = require('mongodb');
 var db = mongo.MongoClient
-var dbUrl = "mongodb://localhost:27017/plugindb"
+var dbUrl = "mongodb://localhost:27017/devplugindb"
 
 var barion = new (require('barion-nodejs'))(BarionTest);
 
@@ -29,7 +29,7 @@ Save plugin into the database
 function saveMarketPlacePlugin(plugin, callback) {
     db.connect(dbUrl, function (err, database) {
         if (err) throw err
-        var dBase = database.db("plugindb")
+        var dBase = database.db("devplugindb")
         dBase.collection("marketplaceplugin").insertOne(plugin, function (err, res) {
             if (err) return callback(err)
             database.close()
@@ -46,7 +46,7 @@ function getPlugins(callback) {
     db.connect(dbUrl, function (err, database) {
         var plugins = [];
         if (err) throw err
-        var dBase = database.db("plugindb")
+        var dBase = database.db("devplugindb")
         var cursor = dBase.collection("marketplaceplugin").find()
         cursor.each(function (err, item) {
             if (err || item == null) {
@@ -80,7 +80,7 @@ function clearPluginCollection(callback) {
     db.connect(dbUrl, function (err, database) {
         var users = [];
         if (err) throw err
-        var dBase = database.db("plugindb")
+        var dBase = database.db("devplugindb")
         var cursor = dBase.collection("marketplaceplugin").deleteMany({}, function (err, res) {
             if (err) {
                 callback(err)
@@ -117,7 +117,7 @@ app.post('/genpayment', urlencodedParser, function (req, res) {
         PaymentRequestId: "request_id_generated_by_the_shop",
         Locale: "hu-HU",
         Currency: "HUF",
-        CallbackUrl: "https://plugin.mobileappdev.org/callback?do=ok",
+        CallbackUrl: "https://dev.plugin.mobileappdev.org/callback?do=ok",
         Transactions: [
             {
                 POSTransactionId: "test_payment_id_from_shop",
@@ -271,10 +271,10 @@ app.get('/plugin', function (req, res) {
     //__dirname : It will resolve to your project folder.
 });
 
-var server = app.listen(8083, function () {
+var server = app.listen(8090, function () {
     var host = server.address().address
     var port = server.address().port
 
-    console.log("Plugin server listening at http://%s:%s", host, port)
+    console.log("Plugin Dev server listening at http://%s:%s", host, port)
 
 })
