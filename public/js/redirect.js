@@ -7,7 +7,7 @@ var app = new Framework7({
     routes: [
         {
             path: '/redirect/',
-            url: '/redirect',
+            url: '/redirect.html',
             on: {
                 pageInit: function (e, page) {
                     var query = page.query;
