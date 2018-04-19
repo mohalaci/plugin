@@ -81,6 +81,19 @@ var app = new Framework7({
         {
             path: '/failed/',
             url: '/failed.html'
+        },
+        {
+            path: '/redirect',
+            url: '/redirect.html',
+            on: {
+                pageInit: function (e, page) {
+                    var query = page.query;
+                    console.log(query);
+                    //var content = $cDetailsTemplate(bookData);
+                    //$(".book-template").html(content);
+                    
+                }
+            }
         }
     ],
     navbar: {
