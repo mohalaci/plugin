@@ -23,7 +23,6 @@ var BarionError = barion.BarionError;
 // Import the built-in requestbuilders
 var BarionRequestBuilderFactory = barion.BarionRequestBuilderFactory;
 
-var getPaymentStateRequestBuilder = new BarionRequestBuilderFactory.BarionGetPaymentStateRequestBuilder();
 
 
 /*
@@ -108,6 +107,8 @@ app.post('/callback', urlencodedParser, function(req, res){
 app.get('/getpaymentstate', function(req, res){
     var paymentId = req.query.paymentId
     if (paymentId != null) {
+        var getPaymentStateRequestBuilder = new BarionRequestBuilderFactory.BarionGetPaymentStateRequestBuilder();
+
         var getPaymentStateOptionsWithBuilder = getPaymentStateRequestBuilder
             .setPOSKey('ec5abfa2-5eea-42db-9568-b9a4cf825b88')
             .setPaymentId(paymentId)
