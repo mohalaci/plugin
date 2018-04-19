@@ -6,7 +6,7 @@ var app = new Framework7({
     id: 'com.myapp.test',
     routes: [
         {
-            path: '/redirect/',
+            path: '/',
             url: '/redirect.html',
             on: {
                 pageInit: function (e, page) {
@@ -62,9 +62,7 @@ $(document).ready(function () {
         e.stopPropagation();
         return false;
     });
-    $(document).on('ready', function (){
-
-    })
+    
 });
 
 function postToBarionHandler(obj) {
