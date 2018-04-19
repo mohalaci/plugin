@@ -6,7 +6,7 @@ var app = new Framework7({
     on: {
     init: function () {
       console.log('App initialized'),
-    },
+    }},
     routes: [
         {
             path: '/',
