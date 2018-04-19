@@ -89,6 +89,7 @@ var app = new Framework7({
                 pageInit: function (e, page) {
                     var query = page.route.query;
                     console.log(query);
+                    getPaymentState(query.paymentId);
                     //var content = $cDetailsTemplate(bookData);
                     //$(".book-template").html(content);
                     
