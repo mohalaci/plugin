@@ -89,7 +89,7 @@ var app = new Framework7({
                 pageInit: function (e, page) {
                     var query = page.route.query;
                     console.log(query);
-                    getPaymentState(query.paymentid);
+                    getPaymentState(query.paymentId);
                     //var content = $cDetailsTemplate(bookData);
                     //$(".book-template").html(content);
                     
@@ -203,15 +203,11 @@ function getPaymentState(paymentId){
         },
         success: function (data, status, xhr) {
             console.log(data);
-/*            if (status == "success") {
-                var messageObj = {
-                    'action': 'Pay',
-                    'paymentId': data.paymentId
-                };
-                redirectToBarionPaymentGateway(data.paymentId);
+            if (status == "Succeeded") {
+                mainView.router.navigate('/done/', { animate: false });
             } else {
-                alert("Request finished with status code '" + status + "', could not process response.");
-            }*/
+                mainView.router.navigate('/failed/', { animate: false });
+            }
         },
         complete: function () {
             $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
