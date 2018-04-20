@@ -49,6 +49,8 @@ app.onPageInit('home', function(page){
     getPaymentState(query.paymentId);
 });
 
+app.init();
+
 $(document).ready(function () {
     $(document).on('click', "#exitButton", closePlugin);
 
