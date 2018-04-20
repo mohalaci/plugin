@@ -265,11 +265,11 @@ function setShippingAddress(shippingData) {
     if (typeof shippingData != "undefined" && shippingData != null) {
         var s = JSON.parse(shippingData);
         $shippingAddress = {
-            country: s.country,
-            city: s.city,
-            street: s.street,
-            streetNumber: s.streetNumber,
-            zip: s.postalCode,
+            country: s.address.country,
+            city: s.address.city,
+            street: s.address.street,
+            streetNumber: s.address.streetNumber,
+            zip: s.address.postalCode,
             firstName: s.firstName,
             lastName: s.lastName,
             companyName: s.companyName
