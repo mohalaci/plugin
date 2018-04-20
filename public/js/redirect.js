@@ -25,13 +25,15 @@ var app = new Framework7({
         materialBackgroundColor: '#1A80BB'
     },
     on: {
-    pageInit(page) {
-       console.log(page)
-       var query = page.route.query;
-    console.log(query);
-    getPaymentState(query.paymentId);
+        pageInit(page) {
+            console.log(page)
+            var query = page.route.query;
+            console.log(query);
+            if (query.length > 0){
+                getPaymentState(query.paymentId);
+            }
+        }
     }
-  }
 });
 var $$ = Dom7;
 var mainView = app.views.create('.view-main');
@@ -46,8 +48,6 @@ app.on('init', function() {
     } else {
         app.statusbar.hide();
     }
-    var query = e.query;
-    console.log(query);
 });
 
 
