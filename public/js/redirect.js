@@ -16,11 +16,9 @@ var app = new Framework7({
             url: '/redirect',
             on: {
                 pageInit: function (e, page) {
-                    var query = page.query;
+                    var query = page.route.query;
                     console.log(query);
-                    //var content = $cDetailsTemplate(bookData);
-                    //$(".book-template").html(content);
-                    
+                    getPaymentState(query.paymentId);
                 }
             }
         },
@@ -88,6 +86,27 @@ function postToBarionHandler(obj) {
     } else {
         alert("Handler is not attached.\r\nJSON: " + message);
     }
+}
+
+function getPaymentState(paymentId){
+    $.ajax({
+        method: "GET",
+        url: "/getpaymentstate?paymentId="+paymentId,
+        error: function (xhr, status, error) {
+            alert("ERROR: " + error + "\r\nStatus: " + status);
+        },
+        success: function (data, status, xhr) {
+            console.log(data);
+            if (data.status == "Succeeded") {
+                mainView.router.load('done.html');
+            } else {
+                mainView.router.load('failed.html');
+            }
+        },
+        complete: function () {
+            $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
+        }
+    });
 }
 
 function closePlugin() {
