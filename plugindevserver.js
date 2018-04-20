@@ -108,7 +108,7 @@ app.post('/callback', urlencodedParser, function(req, res){
 app.get('/getpaymentstate', function(req, res){
     var paymentId = req.query.paymentId
     if (paymentId != null) {
-        
+
         var getPaymentStateOptionsWithBuilder = getPaymentStateRequestBuilder
             .setPOSKey('ec5abfa2-5eea-42db-9568-b9a4cf825b88')
             .setPaymentId(paymentId)
@@ -158,7 +158,7 @@ app.post('/genpayment', urlencodedParser, function (req, res) {
         PaymentRequestId: "request_id_generated_by_the_shop",
         Locale: "hu-HU",
         Currency: "HUF",
-        RedirectUrl: "https://dev.plugin.mobileappdev.org/redirect",
+        RedirectUrl: "https://dev.plugin.mobileappdev.org/redirect.html",
         CallbackUrl: "https://dev.plugin.mobileappdev.org/callback?do=ok",
         Transactions: [
             {
