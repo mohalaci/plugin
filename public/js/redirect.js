@@ -90,9 +90,9 @@ function getPaymentState(paymentId){
         success: function (data, status, xhr) {
             console.log(data);
             if (data.status == "Succeeded") {
-                mainView.router.load('done.html');
+                mainView.router.navigate('/done/', { animate: false });
             } else {
-                mainView.router.load('failed.html');
+                mainView.router.navigate('/failed/', { animate: false });
             }
         },
         complete: function () {
