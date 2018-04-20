@@ -29,7 +29,7 @@ var app = new Framework7({
             console.log(page)
             var query = page.route.query;
             console.log(query);
-            if (query.length > 0){
+            if (query != null){
                 getPaymentState(query.paymentId);
             }
         }
