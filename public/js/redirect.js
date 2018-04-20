@@ -3,25 +3,8 @@ var app = new Framework7({
     root: '#app',
     name: 'My App',
     id: 'com.myapp.test',
-    on: {
-        init: function (page) {
-            console.log('App initialized');
-            var query = page.query;
-            console.log(query);
-        }
-    },
+    init: false,
     routes: [
-        {
-            path: '/',
-            url: '/redirect',
-            on: {
-                pageInit: function (e, page) {
-                    var query = page.route.query;
-                    console.log(query);
-                    getPaymentState(query.paymentId);
-                }
-            }
-        },
         {
             path: '/done/',
             url: '/done.html'
@@ -58,6 +41,12 @@ app.on('init', function() {
     }
     var query = e.query;
     console.log(query);
+});
+
+app.onPageInit('home', function(page){
+    var query = page.route.query;
+    console.log(query);
+    getPaymentState(query.paymentId);
 });
 
 $(document).ready(function () {
