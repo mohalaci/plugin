@@ -23,7 +23,15 @@ var app = new Framework7({
         iosOverlaysWebView: false,
         iosBackgroundColor: '#1A80BB',
         materialBackgroundColor: '#1A80BB'
+    },
+    on: {
+    pageInit(page) {
+       console.log(page)
+       var query = page.route.query;
+    console.log(query);
+    getPaymentState(query.paymentId);
     }
+  }
 });
 var $$ = Dom7;
 var mainView = app.views.create('.view-main');
@@ -42,11 +50,6 @@ app.on('init', function() {
     console.log(query);
 });
 
-app.onPageInit('home', function(page){
-    var query = page.route.query;
-    console.log(query);
-    getPaymentState(query.paymentId);
-});
 
 
 $(document).ready(function () {
