@@ -27,7 +27,7 @@ var app = new Framework7({
     on: {
         pageInit(page) {
             console.log(page)
-            if (page.route.path == "redirect") {
+            if (page.route.path != "done" || page.rout.path != "failed") {
                 var query = page.route.query;
             console.log(query);
             if (query != null){
