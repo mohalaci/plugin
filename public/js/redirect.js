@@ -27,11 +27,14 @@ var app = new Framework7({
     on: {
         pageInit(page) {
             console.log(page)
-            var query = page.route.query;
+            if (page.route.path == "redirect") {
+                var query = page.route.query;
             console.log(query);
             if (query != null){
                 getPaymentState(query.paymentId);
             }
+            }
+            
         }
     }
 });
