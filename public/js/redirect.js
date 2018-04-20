@@ -30,7 +30,7 @@ var app = new Framework7({
             if (page.route.path != "/done/" || page.route.path != "/failed/") {
                 var query = page.route.query;
             console.log(query);
-            if (query != null){
+            if (query != {}){
                 getPaymentState(query.paymentId);
             }
             }
