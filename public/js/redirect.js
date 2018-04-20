@@ -3,7 +3,6 @@ var app = new Framework7({
     root: '#app',
     name: 'My App',
     id: 'com.myapp.test',
-    init: false,
     routes: [
         {
             path: '/done/',
@@ -49,7 +48,6 @@ app.onPageInit('home', function(page){
     getPaymentState(query.paymentId);
 });
 
-app.init();
 
 $(document).ready(function () {
     $(document).on('click', "#exitButton", closePlugin);
