@@ -27,12 +27,10 @@ var app = new Framework7({
     on: {
         pageInit(page) {
             console.log(page)
-            if (page.route.path != "/done/" || page.route.path != "/failed/") {
+            if (page.route.path != "/done/" && page.route.path != "/failed/") {
                 var query = page.route.query;
-            console.log(query);
-            if (query != {}){
+                console.log(query);
                 getPaymentState(query.paymentId);
-            }
             }
             
         }
