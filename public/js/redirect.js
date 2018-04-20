@@ -81,7 +81,8 @@ function postToBarionHandler(obj) {
 }
 
 function getPaymentState(paymentId){
-    $.ajax({
+    if (paymentId != "undefined") {
+        $.ajax({
         method: "GET",
         url: "/getpaymentstate?paymentId="+paymentId,
         error: function (xhr, status, error) {
@@ -99,6 +100,8 @@ function getPaymentState(paymentId){
             $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
         }
     });
+    }
+    
 }
 
 function closePlugin() {
