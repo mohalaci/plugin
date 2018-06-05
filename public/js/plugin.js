@@ -271,9 +271,9 @@ function setShippingAddress(shippingData) {
             street: s.address.street,
             streetNumber: s.address.streetNumber,
             postalCode: s.address.postalCode,
-            firstName: s.firstName,
-            lastName: s.lastName,
-            companyName: s.companyName
+            firstName: s.name.firstName,
+            lastName: s.name.lastName,
+            companyName: s.name.companyName
         };
     } else {
         $shippingAddress = $defaultShipping;
