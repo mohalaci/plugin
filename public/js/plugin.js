@@ -177,7 +177,20 @@ $(document).ready(function () {
 function postToBarionHandler(obj) {
     var handler = null;
     var message = JSON.stringify(obj);
-    if (typeof barionPluginHandler != "undefined") {
+    var dummyData = JSON.stringify({"address": {
+		"countryCode": "HU",
+		"city": "Moha",
+		"region": "Fejer",
+		"postalCode": "8042",
+		"street": "Dozsa Gyorgy",
+		"streetNumber": "6",
+		"firstName": "1",
+		"lastName": "3",
+		"companyName": "5"
+	}}
+);
+    setShippingAddress(dummyData);
+    /*if (typeof barionPluginHandler != "undefined") {
         handler = barionPluginHandler;
     } else {
         handler = (typeof window.webkit != "undefined"
@@ -188,7 +201,7 @@ function postToBarionHandler(obj) {
         handler.postMessage(message);
     } else {
         alert("Handler is not attached.\r\nJSON: " + message);
-    }
+    }*/
 }
 
 function getPaymentState(paymentId){
