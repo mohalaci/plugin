@@ -13,7 +13,7 @@ var $defaultShipping = {
     "streetNumber": "32.",
     "floor": "2",
     "taxNumber": "10203040",
-    "country": "Hungary",
+    "countryCode": "HU",
     "door": "5",
     "companyName": "Test Inc."
 };
@@ -143,6 +143,7 @@ $(document).ready(function () {
     $(document).on('click', "#setShippingButton", getShippingAddress);
     $(document).on('click', "#resultButton", closePlugin);
     $(document).on('click', "#exitButton", closePlugin);
+    $(document).on('click', "#changeAddressButton", selectAddress);
 
     $(document).on('click', ".book-list-item", function () {
         var $card = $(this).find('.card');
@@ -177,20 +178,7 @@ $(document).ready(function () {
 function postToBarionHandler(obj) {
     var handler = null;
     var message = JSON.stringify(obj);
-    var dummyData = JSON.stringify({"address": {
-		"countryCode": "HU",
-		"city": "Moha",
-		"region": "Fejer",
-		"postalCode": "8042",
-		"street": "Dozsa Gyorgy",
-		"streetNumber": "6",
-		"firstName": "1",
-		"lastName": "3",
-		"companyName": "5"
-	}}
-);
-    setShippingAddress(dummyData);
-    /*if (typeof barionPluginHandler != "undefined") {
+    if (typeof barionPluginHandler != "undefined") {
         handler = barionPluginHandler;
     } else {
         handler = (typeof window.webkit != "undefined"
@@ -201,7 +189,7 @@ function postToBarionHandler(obj) {
         handler.postMessage(message);
     } else {
         alert("Handler is not attached.\r\nJSON: " + message);
-    }*/
+    }
 }
 
 function getPaymentState(paymentId){
@@ -264,7 +252,7 @@ function redirectToBarionPaymentGateway(paymentId){
 }
 
 function getShippingAddress() {
-    var shippingObj = { 'action': 'setshipping' };
+    var shippingObj = { 'action': 'getAddress' };
     postToBarionHandler(shippingObj);
     mainView.router.navigate('/summary/', { animate: false });
 }
@@ -278,11 +266,11 @@ function setShippingAddress(shippingData) {
     if (typeof shippingData != "undefined" && shippingData != null) {
         var s = JSON.parse(shippingData);
         $shippingAddress = {
-            country: s.address.countryCode,
+            countryCode: s.address.countryCode,
             city: s.address.city,
             street: s.address.street,
             streetNumber: s.address.streetNumber,
-            zip: s.address.postalCode,
+            postalCode: s.address.postalCode,
             firstName: s.firstName,
             lastName: s.lastName,
             companyName: s.companyName
@@ -311,5 +299,10 @@ function unSuccessfulPaymentCallback(data) {
 
 function closePlugin() {
     var closeObj = { 'action': 'close' };
+    postToBarionHandler(closeObj);
+}
+
+function selectAddress(){
+    var closeObj = { 'action': 'changeAddress' };
     postToBarionHandler(closeObj);
 }
