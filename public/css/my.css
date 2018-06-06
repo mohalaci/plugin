@@ -9,6 +9,10 @@ html.with-panel-left-cover .statusbar,
     transition: 250ms;
 }
 
+html.device-android .statusbar {
+    margin-top: -20px;
+}
+
 #app, 
 #app .view {
     background: #1A80BB !important;

@@ -88,7 +88,6 @@ var app = new Framework7({
             on: {
                 pageInit: function (e, page) {
                     var query = page.route.query;
-                    console.log(query);
                     getPaymentState(query.paymentId);
                 }
             }
@@ -117,11 +116,13 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
 app.on('init', function () {
-    if ($('html.ios').length > 0) {
+    if ($('html.device-ios').length > 0) {
         $('body').scrollTop(20);
         $('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
+        $('body').scrollTop(20);
+        $('.view').scrollTop(20);
     }
 });
 
@@ -184,7 +185,6 @@ function getPaymentState(paymentId){
             alert("ERROR: " + error + "\r\nStatus: " + status);
         },
         success: function (data, status, xhr) {
-            console.log(data);
             if (data.status == "Succeeded") {
                 mainView.router.load('done.html');
             } else {
