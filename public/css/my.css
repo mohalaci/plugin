@@ -208,4 +208,6 @@ html.device-android .statusbar {
 
 .loading .loading-icon {
     margin: 15px auto;
+    width: 64px;
+    height: 64px;
 }
