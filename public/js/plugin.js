@@ -247,6 +247,7 @@ function clearShippingAddress() {
 
 function setShippingAddress(shippingData) {
     if (typeof shippingData != "undefined" && shippingData != null) {
+        console.log(shippingData);
         var s = JSON.parse(shippingData);
         $shippingAddress = {
             countryCode: s.address.countryCode,
