@@ -140,6 +140,15 @@ $(document).ready(function () {
     
     var content = $cListTemplate({ books: books });
     $$(".list-template").html(content);
+    
+    if ($('html.device-ios').length > 0) {
+        $('body').scrollTop(20);
+        $('.view').scrollTop(20);
+    } else {
+        app.statusbar.hide();
+        $('body').scrollTop(20);
+        $('.view').scrollTop(20);
+    }
 
     $(document).on('click', "#payWithBarionButton", getPaymentId);
     $(document).on('click', "#setShippingButton", barionMarket.getShippingAddress);
