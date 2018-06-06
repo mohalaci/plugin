@@ -26,11 +26,11 @@ var app = new Framework7({
     },
     on: {
         pageInit(page) {
-            console.log(page)
             if (page.route.path != "/done/" && page.route.path != "/failed/") {
                 var query = page.route.query;
-                console.log(query);
-                getPaymentState(query.paymentId);
+                var _t = setTimeout(function() {
+                    getPaymentState(query.paymentId);
+                }, 2000);
             }
             
         }
@@ -74,7 +74,6 @@ function getPaymentState(paymentId){
             alert("ERROR: " + error + "\r\nStatus: " + status);
         },
         success: function (data, status, xhr) {
-            console.log(data);
             if (data.status == "Succeeded") {
                 mainView.router.navigate('/done/', { animate: false });
             } else {

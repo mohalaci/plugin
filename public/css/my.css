@@ -158,7 +158,7 @@ html.device-android .statusbar {
 
 .book .book-details ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0 0 15px 0;
     padding: 0 15px;
 }
 
@@ -197,3 +197,15 @@ html.device-android .statusbar {
         color: #ffffff;
         padding: 8px;
     }
+    
+.loading {
+    text-align: center;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 700;
+    color: #595959;
+}
+
+.loading .loading-icon {
+    margin: 15px auto;
+}
