@@ -109,6 +109,7 @@ var app = new Framework7({
 
 var $$ = Dom7;
 
+var barionMarket = new BarionMarket();
 var mainView = app.views.create('.view-main');
 mainView.router.allowPageChange = true;
 
@@ -140,10 +141,10 @@ $(document).ready(function () {
     $$(".list-template").html(content);
 
     $(document).on('click', "#payWithBarionButton", getPaymentId);
-    $(document).on('click', "#setShippingButton", getShippingAddress);
-    $(document).on('click', "#resultButton", closePlugin);
-    $(document).on('click', "#exitButton", closePlugin);
-    $(document).on('click', "#changeAddressButton", selectAddress);
+    $(document).on('click', "#setShippingButton", barionMarket.getShippingAddress);
+    $(document).on('click', "#resultButton", barionMarket.closePlugin);
+    $(document).on('click', "#exitButton", barionMarket.closePlugin);
+    $(document).on('click', "#changeAddressButton", barionMarket.selectAddress);
 
     $(document).on('click', ".book-list-item", function () {
         var $card = $(this).find('.card');
@@ -174,23 +175,6 @@ $(document).ready(function () {
         return false;
     });
 });
-
-function postToBarionHandler(obj) {
-    var handler = null;
-    var message = JSON.stringify(obj);
-    if (typeof barionPluginHandler != "undefined") {
-        handler = barionPluginHandler;
-    } else {
-        handler = (typeof window.webkit != "undefined"
-            && typeof window.webkit.messageHandlers != "undefined"
-            && typeof window.webkit.messageHandlers.barionPluginHandler != "undefined") ? window.webkit.messageHandlers.barionPluginHandler : null;
-    }
-    if (typeof handler != "undefined" && handler != null) {
-        handler.postMessage(message);
-    } else {
-        alert("Handler is not attached.\r\nJSON: " + message);
-    }
-}
 
 function getPaymentState(paymentId){
     $.ajax({
@@ -232,10 +216,6 @@ function getPaymentId() {
         },
         success: function (data, status, xhr) {
             if (status == "success") {
-                var messageObj = {
-                    'action': 'Pay',
-                    'paymentId': data.paymentId
-                };
                 redirectToBarionPaymentGateway(data.paymentId);
             } else {
                 alert("Request finished with status code '" + status + "', could not process response.");
@@ -249,12 +229,6 @@ function getPaymentId() {
 
 function redirectToBarionPaymentGateway(paymentId){
     window.location.href = "https://test.barion.com/pay?id="+paymentId;
-}
-
-function getShippingAddress() {
-    var shippingObj = { 'action': 'getAddress' };
-    postToBarionHandler(shippingObj);
-    mainView.router.navigate('/summary/', { animate: false });
 }
 
 function clearShippingAddress() {
@@ -295,14 +269,4 @@ function successfulPaymentCallback(data) {
 
 function unSuccessfulPaymentCallback(data) {
     window.location.href = "/failed.html";
-}
-
-function closePlugin() {
-    var closeObj = { 'action': 'close' };
-    postToBarionHandler(closeObj);
-}
-
-function selectAddress(){
-    var closeObj = { 'action': 'changeAddress' };
-    postToBarionHandler(closeObj);
 }
