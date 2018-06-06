@@ -63,6 +63,7 @@ $(document).ready(function () {
         return false;
     });
     
+    $(".page-content").fadeOut(0).fadeIn(100);
 });
 
 function getPaymentState(paymentId){

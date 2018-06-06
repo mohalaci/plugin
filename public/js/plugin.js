@@ -225,6 +225,7 @@ function getPaymentId() {
         },
         success: function (data, status, xhr) {
             if (status == "success") {
+                $(".page-content").fadeOut(100);
                 redirectToBarionPaymentGateway(data.paymentId);
             } else {
                 alert("Request finished with status code '" + status + "', could not process response.");
