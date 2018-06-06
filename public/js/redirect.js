@@ -37,6 +37,7 @@ var app = new Framework7({
     }
 });
 var $$ = Dom7;
+var barionMarket = new BarionMarket();
 var mainView = app.views.create('.view-main');
 
 app.statusbar.setIosTextColor('white');
@@ -54,7 +55,7 @@ app.on('init', function() {
 
 
 $(document).ready(function () {
-    $(document).on('click', "#exitButton", closePlugin);
+    $(document).on('click', "#exitButton", barionMarket.closePlugin);
 
     $(document).on('click', ".navbar, .statusbar", function (e) {
         e.preventDefault();
@@ -63,23 +64,6 @@ $(document).ready(function () {
     });
     
 });
-
-function postToBarionHandler(obj) {
-    var handler = null;
-    var message = JSON.stringify(obj);
-    if (typeof barionPluginHandler != "undefined") {
-        handler = barionPluginHandler;
-    } else {
-        handler = (typeof window.webkit != "undefined" 
-                && typeof window.webkit.messageHandlers != "undefined" 
-                && typeof window.webkit.messageHandlers.barionPluginHandler != "undefined") ? window.webkit.messageHandlers.barionPluginHandler : null;
-    }
-    if (typeof handler != "undefined" && handler != null) {
-        handler.postMessage(message);
-    } else {
-        alert("Handler is not attached.\r\nJSON: " + message);
-    }
-}
 
 function getPaymentState(paymentId){
     if (paymentId != "undefined") {
@@ -103,9 +87,4 @@ function getPaymentState(paymentId){
     });
     }
     
-}
-
-function closePlugin() {
-    var closeObj = {'action':'close'};
-    postToBarionHandler(closeObj);
 }
