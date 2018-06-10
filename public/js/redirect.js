@@ -44,31 +44,31 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
 app.on('init', function() {
-    if ($('html.ios').length > 0) {
-        $('body').scrollTop(20);
-        $('.view').scrollTop(20);
+    if ($$('html.ios').length > 0) {
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
     }
 });
 
+$$(document).on('DOMContentLoaded', function(){
+    $$(document).on('click', "#exitButton", barionMarket.closePlugin);
 
-
-$(document).ready(function () {
-    $(document).on('click', "#exitButton", barionMarket.closePlugin);
-
-    $(document).on('click', ".navbar, .statusbar", function (e) {
+    $$(document).on('click', ".navbar, .statusbar", function (e) {
         e.preventDefault();
         e.stopPropagation();
         return false;
     });
     
-    $(".page-content").fadeOut(0).fadeIn(100);
+    $$(".page-content").fadeOut(0).fadeIn(100);
 });
+
+
 
 function getPaymentState(paymentId){
     if (paymentId != "undefined") {
-        $.ajax({
+        app.request({
         method: "GET",
         url: "/getpaymentstate?paymentId="+paymentId,
         error: function (xhr, status, error) {
@@ -82,7 +82,7 @@ function getPaymentState(paymentId){
             }
         },
         complete: function () {
-            $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
+            $$("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
         }
     });
     }

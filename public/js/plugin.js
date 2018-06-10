@@ -38,7 +38,7 @@ var app = new Framework7({
             on: {
                 pageInit: function (e, page) {
                     var content = $cListTemplate({ books: books });
-                    $(".list-template").html(content);
+                    $$(".list-template").html(content);
                 }
             }
         },
@@ -51,7 +51,7 @@ var app = new Framework7({
                     if ($selectedBook > 0) {
                         var bookData = books[$selectedBook - 1];
                         var content = $cDetailsTemplate(bookData);
-                        $(".book-template").html(content);
+                        $$(".book-template").html(content);
                     }
                 }
             }
@@ -69,7 +69,7 @@ var app = new Framework7({
                             shipping: $shippingAddress
                         };
                         var content = $cSummaryTemplate(summaryData);
-                        $(".summary-template").html(content);
+                        $$(".summary-template").html(content);
                     }
                 }
             }
@@ -116,78 +116,82 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
 app.on('init', function () {
-    if ($('html.device-ios').length > 0) {
-        $('body').scrollTop(20);
-        $('.view').scrollTop(20);
+    if ($$('html.device-ios').length > 0) {
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
-        $('body').scrollTop(20);
-        $('.view').scrollTop(20);
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
     }
 });
 
-$(document).ready(function () {
+$$(document).on('DOMContentLoaded', function(){
+//pre-complie templates
+var bookListTemplate = $$('script#listTemplate').html();
+$cListTemplate = Template7.compile(bookListTemplate);
 
-    //pre-complie templates
-    var bookListTemplate = $$('script#listTemplate').html();
-    $cListTemplate = Template7.compile(bookListTemplate);
+var bookDetailsTemplate = $$('script#detailsTemplate').html();
+$cDetailsTemplate = Template7.compile(bookDetailsTemplate);
 
-    var bookDetailsTemplate = $$('script#detailsTemplate').html();
-    $cDetailsTemplate = Template7.compile(bookDetailsTemplate);
+var summaryTemplate = $$('script#summaryTemplate').html();
+$cSummaryTemplate = Template7.compile(summaryTemplate);
 
-    var summaryTemplate = $$('script#summaryTemplate').html();
-    $cSummaryTemplate = Template7.compile(summaryTemplate);
-    
-    var content = $cListTemplate({ books: books });
-    $$(".list-template").html(content);
-    
-    if ($('html.device-ios').length > 0) {
-        $('body').scrollTop(20);
-        $('.view').scrollTop(20);
-    } else {
-        app.statusbar.hide();
-        $('body').scrollTop(20);
-        $('.view').scrollTop(20);
-    }
+var content = $cListTemplate({ books: books });
+$$(".list-template").html(content);
 
-    $(document).on('click', "#payWithBarionButton", getPaymentId);
-    $(document).on('click', "#setShippingButton", barionMarket.getShippingAddress);
-    $(document).on('click', "#resultButton", barionMarket.closePlugin);
-    $(document).on('click', "#exitButton", barionMarket.closePlugin);
-    $(document).on('click', "#changeAddressButton", barionMarket.selectAddress);
+if ($$('html.device-ios').length > 0) {
+    $$('body').scrollTop(20);
+    $$('.view').scrollTop(20);
+} else {
+    app.statusbar.hide();
+    $$('body').scrollTop(20);
+    $$('.view').scrollTop(20);
+}
 
-    $(document).on('click', ".book-list-item", function () {
-        var $card = $(this).find('.card');
+$$(document).on('click', "#payWithBarionButton", getPaymentId);
+    $$(document).on('click', "#setShippingButton", barionMarket.getShippingAddress);
+    $$(document).on('click', "#resultButton", barionMarket.closePlugin);
+    $$(document).on('click', "#exitButton", barionMarket.closePlugin);
+    $$(document).on('click', "#changeAddressButton", barionMarket.selectAddress);
+
+    $$(document).on('click', ".book-list-item", function () {
+        var $card = $$(this).find('.card');
         $card.addClass('touched');
-        $selectedBook = $(this).attr("data-book-id");
+        $selectedBook = $$(this).attr("data-book-id");
         mainView.router.navigate("/bookdetails/");
     });
 
-    $(document).on('click', ".backToList-link", function (e) {
+    $$(document).on('click', ".backToList-link", function (e) {
         e.preventDefault();
         e.stopPropagation();
         mainView.router.back('/booklist/', { force: true });
     });
 
-    $(document).on('click', ".backToDetails-link", function (e) {
+    $$(document).on('click', ".backToDetails-link", function (e) {
         e.preventDefault();
         e.stopPropagation();
         mainView.router.back('/bookdetails/', { force: true });
     });
 
-    $(document).on('click', ".book-link", function () {
-        $selectedBook = $(this).attr("data-book-id");
+    $$(document).on('click', ".book-link", function () {
+        $selectedBook = $$(this).attr("data-book-id");
     });
 
-    $(document).on('click', ".navbar, .statusbar", function (e) {
+    $$(document).on('click', ".navbar, .statusbar", function (e) {
         e.preventDefault();
         e.stopPropagation();
         return false;
     });
+
 });
 
+
+
+
 function getPaymentState(paymentId){
-    $.ajax({
+    app.request
+    ({
         method: "GET",
         url: "/getpaymentstate?paymentId="+paymentId,
         error: function (xhr, status, error) {
@@ -201,15 +205,15 @@ function getPaymentState(paymentId){
             }
         },
         complete: function () {
-            $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
+            $$("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
         }
     });
 }
 
 function getPaymentId() {
-    $("#payWithBarionButton").addClass('disabled').attr('disabled', 'disabled');
+    $$("#payWithBarionButton").addClass('disabled').attr('disabled', 'disabled');
     var book = books[$selectedBook - 1];
-    $.ajax({
+    app.request({
         method: "POST",
         url: "/genpayment",
         data: {
@@ -225,14 +229,14 @@ function getPaymentId() {
         },
         success: function (data, status, xhr) {
             if (status == "success") {
-                $(".page-content").fadeOut(100);
+                $$(".page-content").fadeOut(100);
                 redirectToBarionPaymentGateway(data.paymentId);
             } else {
                 alert("Request finished with status code '" + status + "', could not process response.");
             }
         },
         complete: function () {
-            $("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
+            $$("#payWithBarionButton").removeClass('disabled').removeAttr('disabled');
         }
     });
 }
@@ -270,7 +274,7 @@ function setShippingAddress(shippingData) {
             shipping: $shippingAddress
         };
         var content = $cSummaryTemplate(summaryData);
-        $(".summary-template").html(content);
+        $$(".summary-template").html(content);
     }
 }
 

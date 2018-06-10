@@ -23,23 +23,24 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#1A80BB');
 
 app.on('init', function() {
-    if ($('html.ios').length > 0) {
-        $('body').scrollTop(20);
-        $('.view').scrollTop(20);
+    if ($$('html.ios').length > 0) {
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
     }
 });
 
-$(document).ready(function () {
-    $(document).on('click', "#exitButton", closePlugin);
+$$(document).on('DOMContentLoaded', function(){
+    $$(document).on('click', "#exitButton", closePlugin);
 
-    $(document).on('click', ".navbar, .statusbar", function (e) {
+    $$(document).on('click', ".navbar, .statusbar", function (e) {
         e.preventDefault();
         e.stopPropagation();
         return false;
     });
 });
+
 
 function postToBarionHandler(obj) {
     var handler = null;
