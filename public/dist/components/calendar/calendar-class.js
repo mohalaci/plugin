@@ -57,7 +57,7 @@ class Calendar extends Framework7Class {
     function onHtmlClick(e) {
       const $targetEl = $(e.target);
       if (calendar.isPopover()) return;
-      if (!calendar.opened || calendar.closing) return;
+      if (!calendar.opened) return;
       if ($targetEl.closest('[class*="backdrop"]').length) return;
       if ($inputEl && $inputEl.length > 0) {
         if ($targetEl[0] !== $inputEl[0] && $targetEl.closest('.sheet-modal, .calendar-modal').length === 0) {
@@ -596,9 +596,7 @@ class Calendar extends Framework7Class {
     const prevDateTime = prevDate.getTime();
     const transitionEndCallback = !calendar.animating;
     if (params.minDate) {
-      let minDate = new Date(params.minDate);
-      minDate = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
-      if (prevDateTime < minDate.getTime()) {
+      if (prevDateTime < new Date(params.minDate).getTime()) {
         calendar.resetMonth();
         return;
       }
@@ -662,12 +660,8 @@ class Calendar extends Framework7Class {
     if (params.maxDate && targetDate > new Date(params.maxDate).getTime()) {
       return false;
     }
-    if (params.minDate) {
-      let minDate = new Date(params.minDate);
-      minDate = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
-      if (targetDate < minDate.getTime()) {
-        return false;
-      }
+    if (params.minDate && targetDate < new Date(params.minDate).getTime()) {
+      return false;
     }
     const currentDate = new Date(calendar.currentYear, calendar.currentMonth).getTime();
     const dir = targetDate > currentDate ? 'next' : 'prev';
@@ -1132,9 +1126,7 @@ class Calendar extends Framework7Class {
   onOpen() {
     const calendar = this;
     const { initialized, $el, app, $inputEl, inline, value, params } = calendar;
-    calendar.closing = false;
     calendar.opened = true;
-    calendar.opening = true;
 
     // Init main events
     calendar.attachCalendarEvents();
@@ -1186,7 +1178,6 @@ class Calendar extends Framework7Class {
   }
   onOpened() {
     const calendar = this;
-    calendar.opening = false;
     if (calendar.$el) {
       calendar.$el.trigger('calendar:opened', calendar);
     }
@@ -1198,8 +1189,6 @@ class Calendar extends Framework7Class {
   onClose() {
     const calendar = this;
     const app = calendar.app;
-    calendar.opening = false;
-    calendar.closing = true;
 
     if (calendar.$inputEl && app.theme === 'md') {
       calendar.$inputEl.trigger('blur');
@@ -1219,7 +1208,6 @@ class Calendar extends Framework7Class {
   onClosed() {
     const calendar = this;
     calendar.opened = false;
-    calendar.closing = false;
 
     if (!calendar.inline) {
       Utils.nextTick(() => {

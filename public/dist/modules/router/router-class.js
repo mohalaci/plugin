@@ -603,7 +603,6 @@ class Router extends Framework7Class {
 
       if (matched) {
         keys.forEach((keyObj, index) => {
-          if (typeof keyObj.name === 'number') return;
           const paramValue = matched[index + 1];
           params[keyObj.name] = paramValue;
         });

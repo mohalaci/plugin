@@ -1,5 +1,5 @@
 /**
- * Framework7 3.0.0-beta.7
+ * Framework7 2.3.1
  * Full featured mobile HTML framework for building iOS & Android apps
  * http://framework7.io/
  *
@@ -14,7 +14,7 @@ import Template7 from 'template7';
 import $ from 'dom7';
 
 // F7 Class
-import Framework7 from './components/app/app-class';
+import Framework7 from './components/core/core-class';
 
 // Import Helpers
 import Request from './utils/request';

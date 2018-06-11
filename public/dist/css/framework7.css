@@ -1,5 +1,5 @@
 /**
- * Framework7 3.0.0-beta.7
+ * Framework7 2.3.1
  * Full featured mobile HTML framework for building iOS & Android apps
  * http://framework7.io/
  *
@@ -1925,8 +1925,6 @@ html.with-statusbar.device-iphone-x .framework7-root {
   padding-right: 0;
   font-size: 14px;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 0.03em;
 }
 .md .tabbar i.icon,
 .md .tabbar-labels i.icon {
@@ -1950,8 +1948,8 @@ html.with-statusbar.device-iphone-x .framework7-root {
 .md .tabbar-labels .tab-link-highlight {
   position: absolute;
   bottom: 0;
-  height: 2px;
-  background: #fff;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
   left: 0;
@@ -2004,8 +2002,6 @@ html.with-statusbar.device-iphone-x .framework7-root {
 .md .tabbar-labels.toolbar-bottom-md .tabbar-label {
   text-transform: none;
   line-height: 1.2;
-  font-weight: normal;
-  letter-spacing: 0;
 }
 .md .tabbar-scrollable .toolbar-inner {
   overflow: auto;
@@ -6218,7 +6214,7 @@ button {
 }
 .md .button {
   color: #2196f3;
-  border-radius: 4px;
+  border-radius: 2px;
   line-height: 36px;
   height: 36px;
   text-transform: uppercase;
@@ -6229,8 +6225,6 @@ button {
   transition-duration: 300ms;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  font-weight: 500;
-  letter-spacing: 0.03em;
 }
 .md .button.active-state {
   background: rgba(0, 0, 0, 0.1);
@@ -6252,19 +6246,19 @@ button {
 .md .button.button-big-md {
   height: 48px;
   line-height: 48px;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 .md .button.button-round,
 .md .button.button-round-md {
   border-radius: 36px;
 }
 .md .button.button-outline {
-  border: 2px solid #2196f3;
-  line-height: 32px;
+  border: 1px solid #2196f3;
+  line-height: 34px;
 }
 .md .button.button-outline.button-big,
 .md .button.button-outline.button-big-md {
-  line-height: 44px;
+  line-height: 46px;
 }
 .md .button.button-small,
 .md .button.button-small-md {
@@ -6277,7 +6271,7 @@ button {
 .md .button.button-small.button-outline,
 .md .button.button-small-md.button-outline {
   border-width: 2px;
-  line-height: 24px;
+  line-height: 25px;
 }
 .md .button > i.icon + span,
 .md .button > span:not(.ripple-wave) + span,
@@ -6307,7 +6301,7 @@ button {
   background: rgba(255, 255, 255, 0.15);
 }
 .md .segmented {
-  border-radius: 4px;
+  border-radius: 3px;
 }
 .md .segmented.segmented-raised {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -6321,20 +6315,20 @@ button {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 .md .segmented .button:first-child {
-  border-radius: 4px 0 0 4px;
+  border-radius: 3px 0 0 3px;
   border-left: none;
 }
 .md .segmented .button.button-outline {
-  border: 2px solid #2196f3;
+  border: 1px solid #2196f3;
 }
 .md .segmented .button.button-outline:nth-child(n + 2) {
   border-left: none;
 }
 .md .segmented .button:last-child {
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 3px 3px 0;
 }
 .md .segmented .button:first-child:last-child {
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .md .segmented .button.button-round:first-child {
   border-radius: 36px 0 0 36px;
@@ -7349,7 +7343,7 @@ i.icon {
 .card {
   background: #fff;
   position: relative;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 14px;
 }
 .card .list,
@@ -7430,7 +7424,7 @@ i.icon {
   margin: 0;
 }
 .card-header {
-  border-radius: 4px 4px 0 0;
+  border-radius: 2px 2px 0 0;
 }
 .card-header:after {
   content: '';
@@ -7459,7 +7453,7 @@ html.device-pixel-ratio-3 .card-header:after {
   display: none !important;
 }
 .card-footer {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 2px 2px;
 }
 .card-footer:before {
   content: '';
@@ -7495,11 +7489,6 @@ html.device-pixel-ratio-3 .card-footer:before {
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
   margin: 10px;
-}
-.ios .card-outline {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 .ios .card-header a.link,
 .ios .card-footer a.link {
@@ -7559,9 +7548,6 @@ html.device-pixel-ratio-3 .card-footer:before {
 .ios .theme-dark .card {
   background-color: #1c1c1d;
 }
-.ios .theme-dark .card-outline {
-  border-color: #282829;
-}
 .ios .theme-dark .card-header:after {
   background-color: #282829;
 }
@@ -7577,13 +7563,8 @@ html.device-pixel-ratio-3 .card-footer:before {
 }
 .md .card {
   margin: 8px;
-  -webkit-box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-}
-.md .card-outline {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .md .card-header a.link,
 .md .card-footer a.link {
@@ -7608,7 +7589,7 @@ html.device-pixel-ratio-3 .card-footer:before {
   box-sizing: border-box;
   vertical-align: middle;
   color: #2196f3;
-  border-radius: 4px;
+  border-radius: 2px;
   line-height: 36px;
   height: 36px;
   text-transform: uppercase;
@@ -7619,8 +7600,6 @@ html.device-pixel-ratio-3 .card-footer:before {
   transition-duration: 300ms;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  font-weight: 500;
-  letter-spacing: 0.03em;
 }
 input[type="submit"].md .card-header a.link,
 input[type="submit"].md .card-footer a.link,
@@ -7659,9 +7638,6 @@ input[type="button"].md .card-footer a.link {
 }
 .md .theme-dark .card {
   background-color: rgba(255, 255, 255, 0.03);
-}
-.md .theme-dark .card-outline {
-  border-color: #282829;
 }
 .md .theme-dark .card-header:after {
   background-color: rgba(255, 255, 255, 0.08);

@@ -1,5 +1,5 @@
 /**
- * Framework7 3.0.0-beta.7
+ * Framework7 2.3.1
  * Full featured mobile HTML framework for building iOS & Android apps
  * http://framework7.io/
  *
@@ -3170,6 +3170,7 @@
       // Extend defaults with modules params
       app.useModulesParams(defaults);
 
+
       // Extend defaults with passed params
       app.params = Utils.extend(defaults, params);
 
@@ -3219,6 +3220,7 @@
           app.init();
         }
       }
+
       // Return app instance
       return app;
     }
@@ -3231,7 +3233,7 @@
     var staticAccessors = { Dom7: { configurable: true },$: { configurable: true },Template7: { configurable: true },Class: { configurable: true } };
     Framework7.prototype.init = function init () {
       var app = this;
-      if (app.initialized) { return app; }
+      if (app.initialized) { return; }
 
       app.root.addClass('framework7-initializing');
 
@@ -3256,13 +3258,7 @@
       // Methods
       app.methods = {};
       if (app.params.methods) {
-        Object.keys(app.params.methods).forEach(function (methodName) {
-          if (typeof app.params.methods[methodName] === 'function') {
-            app.methods[methodName] = app.params.methods[methodName].bind(app);
-          } else {
-            app.methods[methodName] = app.params.methods[methodName];
-          }
-        });
+        Utils.extend(app.methods, app.params.methods);
       }
       // Init class
       Utils.nextFrame(function () {
@@ -3271,8 +3267,6 @@
       // Emit, init other modules
       app.initialized = true;
       app.emit('init');
-
-      return app;
     };
     // eslint-disable-next-line
     prototypeAccessors.$.get = function () {
@@ -7949,7 +7943,6 @@
 
         if (matched) {
           keys.forEach(function (keyObj, index) {
-            if (typeof keyObj.name === 'number') { return; }
             var paramValue = matched[index + 1];
             params[keyObj.name] = paramValue;
           });
@@ -10332,4 +10325,3 @@
   return Framework7;
 
 })));
-//# sourceMappingURL=framework7.js.map
