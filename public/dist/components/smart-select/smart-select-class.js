@@ -19,6 +19,9 @@ class SmartSelect extends Framework7Class {
 
     let $valueEl = $(params.valueEl);
     if ($valueEl.length === 0) {
+      $valueEl = $el.find('.item-after');
+    }
+    if ($valueEl.length === 0) {
       $valueEl = $('<div class="item-after"></div>');
       $valueEl.insertAfter($el.find('.item-title'));
     }
@@ -31,7 +34,7 @@ class SmartSelect extends Framework7Class {
     if (!view) {
       view = $el.parents('.view').length && $el.parents('.view')[0].f7View;
     }
-    if (!view) {
+    if (!view && (params.openIn === 'page' || (params.openIn !== 'page' && params.routableModals === true))) {
       throw Error('Smart Select requires initialized View');
     }
 
@@ -401,8 +404,12 @@ class SmartSelect extends Framework7Class {
 
     // Init SB
     if (ss.params.searchbar) {
+      let $searchbarEl = $containerEl.find('.searchbar');
+      if (type === 'page' && app.theme === 'ios') {
+        $searchbarEl = $(app.navbar.getElByPage($containerEl)).find('.searchbar');
+      }
       ss.searchbar = app.searchbar.create({
-        el: $containerEl.find('.searchbar'),
+        el: $searchbarEl,
         backdropEl: $containerEl.find('.searchbar-backdrop'),
         searchContainer: `.smart-select-list-${ss.id}`,
         searchIn: '.item-title',

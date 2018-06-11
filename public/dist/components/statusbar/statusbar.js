@@ -1,4 +1,5 @@
 import $ from 'dom7';
+import { window, document } from 'ssr-window';
 import Utils from '../../utils/utils';
 import Device from '../../utils/device';
 
@@ -94,6 +95,8 @@ const Statusbar = {
     if (params.overlay === 'auto') {
       if (Device.needsStatusbarOverlay()) {
         $('html').addClass('with-statusbar');
+      } else {
+        $('html').removeClass('with-statusbar');
       }
 
       if (Device.ios && (Device.cordova || Device.webView)) {
@@ -107,7 +110,7 @@ const Statusbar = {
           Statusbar.checkOverlay();
         }, false);
 
-        app.on('orientationchange resize', () => {
+        app.on(Device.ios ? 'orientationchange' : 'orientationchange resize', () => {
           Statusbar.checkOverlay();
         });
       }

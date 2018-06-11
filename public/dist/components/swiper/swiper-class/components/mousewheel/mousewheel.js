@@ -97,13 +97,24 @@ const Mousewheel = {
       pixelY: pY,
     };
   },
+  handleMouseEnter() {
+    const swiper = this;
+    swiper.mouseEntered = true;
+  },
+  handleMouseLeave() {
+    const swiper = this;
+    swiper.mouseEntered = false;
+  },
   handle(event) {
     let e = event;
     const swiper = this;
     const params = swiper.params.mousewheel;
+
+    if (!swiper.mouseEntered && !params.releaseOnEdges) return true;
+
     if (e.originalEvent) e = e.originalEvent; // jquery fix
     let delta = 0;
-    const rtlFactor = swiper.rtl ? -1 : 1;
+    const rtlFactor = swiper.rtlTranslate ? -1 : 1;
 
     const data = Mousewheel.normalize(e);
 
@@ -136,6 +147,9 @@ const Mousewheel = {
       swiper.mousewheel.lastScrollTime = (new window.Date()).getTime();
     } else {
       // Freemode or scrollContainer:
+      if (swiper.params.loop) {
+        swiper.loopFix();
+      }
       let position = swiper.getTranslate() + (delta * params.sensitivity);
       const wasBeginning = swiper.isBeginning;
       const wasEnd = swiper.isEnd;
@@ -156,14 +170,14 @@ const Mousewheel = {
       if (swiper.params.freeModeSticky) {
         clearTimeout(swiper.mousewheel.timeout);
         swiper.mousewheel.timeout = Utils.nextTick(() => {
-          swiper.slideReset();
+          swiper.slideToClosest();
         }, 300);
       }
       // Emit event
       swiper.emit('scroll', e);
 
       // Stop autoplay
-      if (swiper.params.autoplay && swiper.params.autoplayDisableOnInteraction) swiper.stopAutoplay();
+      if (swiper.params.autoplay && swiper.params.autoplayDisableOnInteraction) swiper.autoplay.stop();
       // Return page scroll on edge positions
       if (position === swiper.minTranslate() || position === swiper.maxTranslate()) return true;
     }
@@ -180,6 +194,8 @@ const Mousewheel = {
     if (swiper.params.mousewheel.eventsTarged !== 'container') {
       target = $(swiper.params.mousewheel.eventsTarged);
     }
+    target.on('mouseenter', swiper.mousewheel.handleMouseEnter);
+    target.on('mouseleave', swiper.mousewheel.handleMouseLeave);
     target.on(Mousewheel.event, swiper.mousewheel.handle);
     swiper.mousewheel.enabled = true;
     return true;
@@ -218,6 +234,8 @@ export default {
         enable: Mousewheel.enable.bind(swiper),
         disable: Mousewheel.disable.bind(swiper),
         handle: Mousewheel.handle.bind(swiper),
+        handleMouseEnter: Mousewheel.handleMouseEnter.bind(swiper),
+        handleMouseLeave: Mousewheel.handleMouseLeave.bind(swiper),
         lastScrollTime: Utils.now(),
       },
     });

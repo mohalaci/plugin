@@ -1,3 +1,4 @@
+import { document } from 'ssr-window';
 import $ from 'dom7';
 import Template7 from 'template7';
 import Utils from '../../utils/utils';
@@ -516,13 +517,16 @@ class VirtualList extends Framework7Class {
     vl.deleteItems([index]);
   }
   // Clear cache
-  clearCachefunction() {
+  clearCache() {
     const vl = this;
     vl.domCache = {};
   }
   // Update Virtual List
-  update() {
+  update(deleteCache) {
     const vl = this;
+    if (deleteCache && vl.params.cache) {
+      vl.domCache = {};
+    }
     vl.setListSize();
     vl.render(true);
   }

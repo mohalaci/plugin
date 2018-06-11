@@ -1,3 +1,4 @@
+import { document } from 'ssr-window';
 import Device from '../../utils/device';
 
 export default {
@@ -12,6 +13,7 @@ export default {
     init() {
       const classNames = [];
       const html = document.querySelector('html');
+      if (!html) return;
       // Pixel Ratio
       classNames.push(`device-pixel-ratio-${Math.floor(Device.pixelRatio)}`);
       if (Device.pixelRatio >= 2) {
@@ -36,11 +38,8 @@ export default {
       } else if (Device.desktop) {
         classNames.push('device-desktop');
       }
-      // Status bar classes
-      if (Device.statusbar) {
-        classNames.push('with-statusbar');
-      } else {
-        html.classList.remove('with-statusbar');
+      if (Device.cordova || Device.phonegap) {
+        classNames.push('device-cordova');
       }
 
       // Add html classes

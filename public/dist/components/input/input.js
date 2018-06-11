@@ -1,4 +1,5 @@
 import $ from 'dom7';
+import { window, document } from 'ssr-window';
 import Utils from '../../utils/utils';
 import Device from '../../utils/device';
 
@@ -58,25 +59,29 @@ const Input = {
     const $inputEl = $(inputEl);
     if (!$inputEl.length) return;
     const $itemInputEl = $inputEl.parents('.item-input');
+    const $inputWrapEl = $inputEl.parents('.input');
     const validity = $inputEl[0].validity;
     const validationMessage = $inputEl.dataset().errorMessage || $inputEl[0].validationMessage || '';
     if (!validity) return;
     if (!validity.valid) {
-      let $errorEl = $inputEl.nextAll('.item-input-error-message');
+      let $errorEl = $inputEl.nextAll('.item-input-error-message, .input-error-message');
       if (validationMessage) {
         if ($errorEl.length === 0) {
-          $errorEl = $('<div class="item-input-error-message"></div>');
+          $errorEl = $(`<div class="${$inputWrapEl.length ? 'input-error-message' : 'item-input-error-message'}"></div>`);
           $errorEl.insertAfter($inputEl);
         }
         $errorEl.text(validationMessage);
       }
       if ($errorEl.length > 0) {
         $itemInputEl.addClass('item-input-with-error-message');
+        $inputWrapEl.addClass('input-with-eror-message');
       }
       $itemInputEl.addClass('item-input-invalid');
+      $inputWrapEl.addClass('input-invalid');
       $inputEl.addClass('input-invalid');
     } else {
       $itemInputEl.removeClass('item-input-invalid item-input-with-error-message');
+      $inputWrapEl.removeClass('input-invalid input-with-error-message');
       $inputEl.removeClass('input-invalid');
     }
   },
@@ -90,29 +95,34 @@ const Input = {
     const $inputEl = $(inputEl);
     const type = $inputEl.attr('type');
     if (Input.ignoreTypes.indexOf(type) >= 0) return;
-    const $itemInputEl = $inputEl.parents('.item-input');
-    $itemInputEl.addClass('item-input-focused');
+    $inputEl.parents('.item-input').addClass('item-input-focused');
+    $inputEl.parents('.input').addClass('input-focused');
     $inputEl.addClass('input-focused');
   },
   blur(inputEl) {
-    $(inputEl).parents('.item-input').removeClass('item-input-focused');
-    $(inputEl).removeClass('input-focused');
+    const $inputEl = $(inputEl);
+    $inputEl.parents('.item-input').removeClass('item-input-focused');
+    $inputEl.parents('.input').removeClass('input-focused');
+    $inputEl.removeClass('input-focused');
   },
   checkEmptyState(inputEl) {
     const $inputEl = $(inputEl);
     const value = $inputEl.val();
     const $itemInputEl = $inputEl.parents('.item-input');
+    const $inputWrapEl = $inputEl.parents('.input');
     if ((value && (typeof value === 'string' && value.trim() !== '')) || (Array.isArray(value) && value.length > 0)) {
       $itemInputEl.addClass('item-input-with-value');
+      $inputWrapEl.addClass('input-with-value');
       $inputEl.addClass('input-with-value');
       $inputEl.trigger('input:notempty');
     } else {
       $itemInputEl.removeClass('item-input-with-value');
+      $inputWrapEl.removeClass('input-with-value');
       $inputEl.removeClass('input-with-value');
       $inputEl.trigger('input:empty');
     }
   },
-  scrollIntoView(inputEl, duration = 0, centered) {
+  scrollIntoView(inputEl, duration = 0, centered, force) {
     const $inputEl = $(inputEl);
     const $scrollableEl = $inputEl.parents('.page-content, .panel').eq(0);
     if (!$scrollableEl.length) {
@@ -137,6 +147,8 @@ const Input = {
     } else if (contentScrollTop < max) {
       $scrollableEl.scrollTop(centered ? centeredPosition : max, duration);
       return true;
+    } else if (force) {
+      $scrollableEl.scrollTop(centered ? centeredPosition : max, duration);
     }
     return false;
   },
@@ -149,11 +161,11 @@ const Input = {
         if (Device.android) {
           $(window).once('resize', () => {
             if (document && document.activeElement === inputEl) {
-              app.input.scrollIntoView(inputEl, app.params.input.scrollIntoViewCentered);
+              app.input.scrollIntoView(inputEl, app.params.input.scrollIntoViewDuration, app.params.input.scrollIntoViewCentered, app.params.input.scrollIntoViewAlways);
             }
           });
         } else {
-          app.input.scrollIntoView(inputEl, app.params.input.scrollIntoViewCentered);
+          app.input.scrollIntoView(inputEl, app.params.input.scrollIntoViewDuration, app.params.input.scrollIntoViewCentered, app.params.input.scrollIntoViewAlways);
         }
       }
       app.input.focus(inputEl);
@@ -202,7 +214,7 @@ const Input = {
       const previousValue = $inputEl.val();
       $inputEl
         .val('')
-        .trigger('change')
+        .trigger('change input')
         .focus()
         .trigger('input:clear', previousValue);
     }
@@ -220,6 +232,8 @@ export default {
     input: {
       scrollIntoViewOnFocus: Device.android,
       scrollIntoViewCentered: false,
+      scrollIntoViewDuration: 0,
+      scrollIntoViewAlways: false,
     },
   },
   create() {
@@ -245,7 +259,7 @@ export default {
     tabMounted(tabEl) {
       const app = this;
       const $tabEl = $(tabEl);
-      $tabEl.find('.item-input').each((itemInputIndex, itemInputEl) => {
+      $tabEl.find('.item-input, .input').each((itemInputIndex, itemInputEl) => {
         const $itemInputEl = $(itemInputEl);
         $itemInputEl.find('input, select, textarea').each((inputIndex, inputEl) => {
           const $inputEl = $(inputEl);
@@ -260,7 +274,7 @@ export default {
     pageInit(page) {
       const app = this;
       const $pageEl = page.$el;
-      $pageEl.find('.item-input').each((itemInputIndex, itemInputEl) => {
+      $pageEl.find('.item-input, .input').each((itemInputIndex, itemInputEl) => {
         const $itemInputEl = $(itemInputEl);
         $itemInputEl.find('input, select, textarea').each((inputIndex, inputEl) => {
           const $inputEl = $(inputEl);

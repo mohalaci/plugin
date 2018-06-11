@@ -3,7 +3,7 @@ import Support from '../../../utils/support';
 export default function (translate, byController) {
   const swiper = this;
   const {
-    rtl, params, $wrapperEl, progress,
+    rtlTranslate: rtl, params, $wrapperEl, progress,
   } = swiper;
   let x = 0;
   let y = 0;
@@ -24,7 +24,7 @@ export default function (translate, byController) {
     if (Support.transforms3d) $wrapperEl.transform(`translate3d(${x}px, ${y}px, ${z}px)`);
     else $wrapperEl.transform(`translate(${x}px, ${y}px)`);
   }
-
+  swiper.previousTranslate = swiper.translate;
   swiper.translate = swiper.isHorizontal() ? x : y;
 
   // Check if we need to update progress

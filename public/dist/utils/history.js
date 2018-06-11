@@ -1,3 +1,4 @@
+import { window, document } from 'ssr-window';
 import $ from 'dom7';
 import Utils from './utils';
 
@@ -75,6 +76,13 @@ const History = {
         }
       }
     });
+  },
+  initViewState(viewId, viewState) {
+    const newState = Utils.extend({}, (History.state || {}), {
+      [viewId]: viewState,
+    });
+    History.state = newState;
+    window.history.replaceState(newState, '');
   },
   push(viewId, viewState, url) {
     if (!History.allowChange) {

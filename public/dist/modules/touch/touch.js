@@ -1,3 +1,4 @@
+import { window, document } from 'ssr-window';
 import $ from 'dom7';
 import Support from '../../utils/support';
 import Device from '../../utils/device';
@@ -310,7 +311,7 @@ function initTouch() {
         }
       });
     }
-    if ((e.timeStamp - lastClickTime) < params.fastClicksDelayBetweenClicks) {
+    if ((touchStartTime - lastClickTime) < params.fastClicksDelayBetweenClicks) {
       e.preventDefault();
     }
 
@@ -362,6 +363,8 @@ function initTouch() {
     clearTimeout(activeTimeout);
     clearTimeout(tapHoldTimeout);
 
+    const touchEndTime = (new Date()).getTime();
+
     if (!trackClick) {
       if (!activeSelection && needsFastClick) {
         if (!(Device.android && !e.cancelable) && e.cancelable) {
@@ -383,12 +386,12 @@ function initTouch() {
       e.preventDefault();
     }
 
-    if ((e.timeStamp - lastClickTime) < params.fastClicksDelayBetweenClicks) {
+    if ((touchEndTime - lastClickTime) < params.fastClicksDelayBetweenClicks) {
       setTimeout(removeActive, 0);
       return true;
     }
 
-    lastClickTime = e.timeStamp;
+    lastClickTime = touchEndTime;
 
     trackClick = false;
 
@@ -413,10 +416,6 @@ function initTouch() {
     // Trigger focus when required
     if (targetNeedsFocus(targetElement)) {
       if (Device.ios && Device.webView) {
-        if ((e.timeStamp - touchStartTime) > 159) {
-          targetElement = null;
-          return false;
-        }
         targetElement.focus();
         return false;
       }
@@ -431,6 +430,9 @@ function initTouch() {
 
     // Send click
     e.preventDefault();
+    if (params.tapHoldPreventClicks && tapHoldFired) {
+      return false;
+    }
     sendClick(e);
     return false;
   }
@@ -453,7 +455,6 @@ function initTouch() {
 
   function handleClick(e) {
     let allowClick = false;
-
     if (trackClick) {
       targetElement = null;
       trackClick = false;
@@ -602,9 +603,9 @@ export default {
       tapHoldPreventClicks: true,
       // Active State
       activeState: true,
-      activeStateElements: 'a, button, label, span, .actions-button',
+      activeStateElements: 'a, button, label, span, .actions-button, .stepper-button, .stepper-button-plus, .stepper-button-minus',
       materialRipple: true,
-      materialRippleElements: '.ripple, .link, .item-link, .links-list a, .button, button, .input-clear-button, .dialog-button, .tab-link, .item-radio, .item-checkbox, .actions-button, .searchbar-disable-button, .fab a, .checkbox, .radio, .data-table .sortable-cell, .notification-close-button',
+      materialRippleElements: '.ripple, .link, .item-link, .links-list a, .button, button, .input-clear-button, .dialog-button, .tab-link, .item-radio, .item-checkbox, .actions-button, .searchbar-disable-button, .fab a, .checkbox, .radio, .data-table .sortable-cell:not(.input-cell), .notification-close-button, .stepper-button, .stepper-button-minus, .stepper-button-plus',
     },
   },
   instance: {

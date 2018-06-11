@@ -10,6 +10,7 @@ export default {
       rightBreakpoint: 0,
       swipe: undefined, // or 'left' or 'right' or 'both'
       swipeActiveArea: 0,
+      swipeCloseActiveAreaSide: 0,
       swipeCloseOpposite: true,
       swipeOnlyClose: false,
       swipeNoFollow: false,
@@ -37,7 +38,7 @@ export default {
             panels = [app.panel.left, app.panel.right];
           } else {
             side = panel;
-            panels = app.panel[side];
+            panels.push(app.panel[side]);
           }
         } else {
           panels = [panel];

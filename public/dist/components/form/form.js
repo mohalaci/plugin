@@ -1,4 +1,5 @@
 import $ from 'dom7';
+import { window, document } from 'ssr-window';
 import Utils from '../../utils/utils';
 
 // Form Data
@@ -109,6 +110,9 @@ function formToData(formEl) {
   const skipNames = [];
   $formEl.find('input, select, textarea').each((inputIndex, inputEl) => {
     const $inputEl = $(inputEl);
+    if ($inputEl.hasClass('ignore-store-data') || $inputEl.hasClass('no-store-data')) {
+      return;
+    }
     const name = $inputEl.attr('name');
     const type = $inputEl.attr('type');
     const tag = inputEl.nodeName.toLowerCase();
@@ -166,6 +170,9 @@ function formFromData(formEl, formData) {
 
   $formEl.find('input, select, textarea').each((inputIndex, inputEl) => {
     const $inputEl = $(inputEl);
+    if ($inputEl.hasClass('ignore-store-data') || $inputEl.hasClass('no-store-data')) {
+      return;
+    }
     const name = $inputEl.attr('name');
     const type = $inputEl.attr('type');
     const tag = inputEl.nodeName.toLowerCase();
@@ -227,8 +234,15 @@ function initAjaxForm() {
     if (!url) return;
 
     let data;
-    if (method === 'POST') data = new window.FormData($formEl[0]);
-    else data = Utils.serializeObject(app.form.convertToData($formEl[0]));
+    if (method === 'POST') {
+      if (contentType === 'application/x-www-form-urlencoded') {
+        data = app.form.convertToData($formEl[0]);
+      } else {
+        data = new window.FormData($formEl[0]);
+      }
+    } else {
+      data = Utils.serializeObject(app.form.convertToData($formEl[0]));
+    }
 
     const xhr = app.request({
       method,

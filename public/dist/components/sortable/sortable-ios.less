@@ -2,6 +2,7 @@
   @import (multiple) '../../less/colors-ios.less';
   .sortable-handler {
     width: 35px;
+    .svg-background("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12' fill='#c7c7cc'><path d='M0,2V0h22v2H0z'/><path d='M0,7V5h22v2H0z'/><path d='M0,12v-2h22v2H0z'/></svg>");
   }
   .sortable {
     li.sorting {
@@ -18,6 +19,18 @@
       });
     }
   }
+  .list.sortable-enabled .item-link.no-chevron .item-inner,
+  .list.sortable-enabled.no-chevron .item-link .item-inner,
+  .list.sortable-enabled .no-chevron .item-link .item-inner,
+  .no-chevron .list.sortable-enabled .item-link .item-inner {
+    .ltr({
+      padding-right: 35px;
+    });
+    .rtl({
+      padding-left: 35px;
+    });
+  }
+
   .safe-areas-landscape({
     .safe-area-right({
       .ltr({

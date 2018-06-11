@@ -1,3 +1,4 @@
+import { window, document } from 'ssr-window';
 import $ from 'dom7';
 import Template7 from 'template7';
 import Utils from '../utils/utils';
@@ -6,8 +7,8 @@ const tempDom = document.createElement('div');
 
 class Framework7Component {
   constructor(opts, extendContext = {}) {
-    let component = Utils.merge(this, extendContext, { $options: opts });
-    const options = component.$options;
+    const options = Utils.extend({}, opts);
+    let component = Utils.merge(this, extendContext, { $options: options });
 
     // Apply context
     ('beforeCreate created beforeMount mounted beforeDestroy destroyed').split(' ').forEach((cycleKey) => {

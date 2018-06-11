@@ -197,7 +197,7 @@ class Autocomplete extends Framework7Class {
       ac.close();
     }
     function onResize() {
-      ac.positionDropDown();
+      ac.positionDropdown();
     }
 
     function onKeyDown(e) {
@@ -232,7 +232,7 @@ class Autocomplete extends Framework7Class {
       }
       if (ac.params.openIn === 'dropdown' && ac.$inputEl) {
         ac.$inputEl.on('focus', onInputFocus);
-        ac.$inputEl.on('input', onInputChange);
+        ac.$inputEl.on(ac.params.inputEvents, onInputChange);
         if (app.device.android) {
           $('html').on('click', onHtmlClick);
         } else {
@@ -249,7 +249,7 @@ class Autocomplete extends Framework7Class {
       }
       if (ac.params.openIn === 'dropdown' && ac.$inputEl) {
         ac.$inputEl.off('focus', onInputFocus);
-        ac.$inputEl.off('input', onInputChange);
+        ac.$inputEl.off(ac.params.inputEvents, onInputChange);
         if (app.device.android) {
           $('html').off('click', onHtmlClick);
         } else {
@@ -291,7 +291,7 @@ class Autocomplete extends Framework7Class {
 
     return ac;
   }
-  positionDropDown() {
+  positionDropdown() {
     const ac = this;
     const { $inputEl, app, $dropdownEl } = ac;
 
@@ -301,11 +301,20 @@ class Autocomplete extends Framework7Class {
     const inputOffsetWidth = $inputEl[0].offsetWidth;
     const inputOffsetHeight = $inputEl[0].offsetHeight;
     const $listEl = $inputEl.parents('.list');
+
+    let $listParent;
+    $listEl.parents().each((index, parentEl) => {
+      if ($listParent) return;
+      const $parentEl = $(parentEl);
+      if ($parentEl.parent($pageContentEl).length) $listParent = $parentEl;
+    });
+
     const listOffset = $listEl.offset();
-    const paddingBottom = parseInt($pageContentEl.css('padding-top'), 10);
-    const listOffsetLeft = $listEl.length > 0 ? listOffset.left - $listEl.parent().offset().left : 0;
+    const paddingBottom = parseInt($pageContentEl.css('padding-bottom'), 10);
+    const listOffsetLeft = $listEl.length > 0 ? listOffset.left - $pageContentEl.offset().left : 0;
     const inputOffsetLeft = inputOffset.left - ($listEl.length > 0 ? listOffset.left : 0) - (app.rtl ? 0 : 0);
     const inputOffsetTop = inputOffset.top - ($pageContentEl.offset().top - $pageContentEl[0].scrollTop);
+
     const maxHeight = $pageContentEl[0].scrollHeight - paddingBottom - (inputOffsetTop + $pageContentEl[0].scrollTop) - $inputEl[0].offsetHeight;
 
     const paddingProp = app.rtl ? 'padding-right' : 'padding-left';
@@ -313,7 +322,6 @@ class Autocomplete extends Framework7Class {
     if ($listEl.length && !ac.params.expandInput) {
       paddingValue = (app.rtl ? $listEl[0].offsetWidth - inputOffsetLeft - inputOffsetWidth : inputOffsetLeft) - (app.theme === 'md' ? 16 : 15);
     }
-
 
     $dropdownEl.css({
       left: `${$listEl.length > 0 ? listOffsetLeft : inputOffsetLeft}px`,
@@ -428,11 +436,12 @@ class Autocomplete extends Framework7Class {
     const ac = this;
     if (ac.params.renderItem) return ac.params.renderItem.call(ac, item, index);
     let itemHtml;
+    const itemValue = item.value.replace(/"/g, '&quot;');
     if (ac.params.openIn !== 'dropdown') {
       itemHtml = `
         <li>
           <label class="item-${item.inputType} item-content">
-            <input type="${item.inputType}" name="${item.inputName}" value="${item.value}" ${item.selected ? 'checked' : ''}>
+            <input type="${item.inputType}" name="${item.inputName}" value="${itemValue}" ${item.selected ? 'checked' : ''}>
             <i class="icon icon-${item.inputType}"></i>
             <div class="item-inner">
               <div class="item-title">${item.text}</div>
@@ -444,7 +453,7 @@ class Autocomplete extends Framework7Class {
       // Dropdown
       itemHtml = `
         <li>
-          <label class="item-radio item-content" data-value="${item.value}">
+          <label class="item-radio item-content" data-value="${itemValue}">
             <div class="item-inner">
               <div class="item-title">${item.text}</div>
             </div>
@@ -710,13 +719,14 @@ class Autocomplete extends Framework7Class {
     if ($listEl.length && ac.$inputEl.parents('.item-content').length > 0 && ac.params.expandInput) {
       ac.$inputEl.parents('.item-content').addClass('item-content-dropdown-expanded');
     }
-    ac.positionDropDown();
+
     const $pageContentEl = ac.$inputEl.parents('.page-content');
-    if (ac.params.dropdownel) {
-      $(ac.params.dropdownel).append(ac.$dropdownEl);
+    if (ac.params.dropdownContainerEl) {
+      $(ac.params.dropdownContainerEl).append(ac.$dropdownEl);
     } else if ($pageContentEl.length === 0) {
       ac.$dropdownEl.insertAfter(ac.$inputEl);
     } else {
+      ac.positionDropdown();
       $pageContentEl.append(ac.$dropdownEl);
     }
     ac.onOpen('dropdown', ac.$dropdownEl);

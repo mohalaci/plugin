@@ -144,7 +144,8 @@ class Swiper extends SwiperClass {
         return swiper.params.direction === 'vertical';
       },
       // RTL
-      rtl: swiper.params.direction === 'horizontal' && (el.dir.toLowerCase() === 'rtl' || $el.css('direction') === 'rtl'),
+      rtl: (el.dir.toLowerCase() === 'rtl' || $el.css('direction') === 'rtl'),
+      rtlTranslate: swiper.params.direction === 'horizontal' && (el.dir.toLowerCase() === 'rtl' || $el.css('direction') === 'rtl'),
       wrongRTL: $wrapperEl.css('display') === '-webkit-box',
 
       // Indexes
@@ -157,6 +158,7 @@ class Swiper extends SwiperClass {
 
       // Props
       translate: 0,
+      previousTranslate: 0,
       progress: 0,
       velocity: 0,
       animating: false,
@@ -273,13 +275,18 @@ class Swiper extends SwiperClass {
   update() {
     const swiper = this;
     if (!swiper || swiper.destroyed) return;
+    const { snapGrid, params } = swiper;
+    // Breakpoints
+    if (params.breakpoints) {
+      swiper.setBreakpoint();
+    }
     swiper.updateSize();
     swiper.updateSlides();
     swiper.updateProgress();
     swiper.updateSlidesClasses();
 
     function setTranslate() {
-      const translateValue = swiper.rtl ? swiper.translate * -1 : swiper.translate;
+      const translateValue = swiper.rtlTranslate ? swiper.translate * -1 : swiper.translate;
       const newTranslate = Math.min(Math.max(translateValue, swiper.maxTranslate()), swiper.minTranslate());
       swiper.setTranslate(newTranslate);
       swiper.updateActiveIndex();
@@ -300,6 +307,9 @@ class Swiper extends SwiperClass {
       if (!translated) {
         setTranslate();
       }
+    }
+    if (params.watchOverflow && snapGrid !== swiper.snapGrid) {
+      swiper.checkOverflow();
     }
     swiper.emit('update');
   }
@@ -362,6 +372,11 @@ class Swiper extends SwiperClass {
     const {
       params, $el, $wrapperEl, slides,
     } = swiper;
+
+    if (typeof swiper.params === 'undefined' || swiper.destroyed) {
+      return null;
+    }
+
     swiper.emit('beforeDestroy');
 
     // Init Flag
@@ -408,6 +423,8 @@ class Swiper extends SwiperClass {
       Utils.deleteProps(swiper);
     }
     swiper.destroyed = true;
+
+    return null;
   }
   static extendDefaults(newDefaults) {
     Utils.extend(extendedDefaults, newDefaults);

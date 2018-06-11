@@ -1,3 +1,5 @@
+/* eslint no-control-regex: "off" */
+import { window } from 'ssr-window';
 import bezier from './bezier';
 
 // Remove Diacritics

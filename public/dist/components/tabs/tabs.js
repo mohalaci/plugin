@@ -25,6 +25,9 @@ const Tab = {
     if (typeof animate === 'undefined') animate = true;
 
     const $newTabEl = $(tabEl);
+    if (tabRoute && $newTabEl[0]) {
+      $newTabEl[0].f7TabRoute = tabRoute;
+    }
 
     if ($newTabEl.length === 0 || $newTabEl.hasClass('tab-active')) {
       return {
@@ -138,7 +141,13 @@ const Tab = {
       if ($oldTabEl && $oldTabEl.length > 0) {
         // Search by id
         const oldTabId = $oldTabEl.attr('id');
-        if (oldTabId) $oldTabLinkEl = $(`.tab-link[href="#${oldTabId}"]`);
+        if (oldTabId) {
+          $oldTabLinkEl = $(`.tab-link[href="#${oldTabId}"]`);
+          // Search by data-route-tab-id
+          if (!$oldTabLinkEl || ($oldTabLinkEl && $oldTabLinkEl.length === 0)) {
+            $oldTabLinkEl = $(`.tab-link[data-route-tab-id="${oldTabId}"]`);
+          }
+        }
         // Search by data-tab
         if (!$oldTabLinkEl || ($oldTabLinkEl && $oldTabLinkEl.length === 0)) {
           $('[data-tab]').each((index, tabLinkElement) => {

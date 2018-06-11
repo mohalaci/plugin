@@ -1,3 +1,4 @@
+import { document } from 'ssr-window';
 import $ from 'dom7';
 import Utils from '../../utils/utils';
 import FrameworkClass from '../../utils/class';
@@ -289,7 +290,7 @@ class Searchbar extends FrameworkClass {
         }
         sb.$disableButtonEl.css(`margin-${app.rtl ? 'left' : 'right'}`, '0px');
       }
-      if (sb.$hideOnEnableEl) sb.$hideOnEnableEl.hide();
+      if (sb.$hideOnEnableEl) sb.$hideOnEnableEl.addClass('hidden-by-searchbar');
       sb.$el.trigger('searchbar:enable');
       sb.emit('local::enable searchbarEnable', sb);
     }
@@ -317,7 +318,7 @@ class Searchbar extends FrameworkClass {
     } else {
       if (needsFocus) sb.$inputEl.focus();
       if (app.theme === 'md' && sb.expandable) {
-        sb.$el.parents('.navbar-inner').scrollLeft(0);
+        sb.$el.parents('.page, .view, .navbar-inner').scrollLeft(0);
       }
       enable();
     }
@@ -342,7 +343,7 @@ class Searchbar extends FrameworkClass {
 
     sb.$inputEl.blur();
 
-    if (sb.$hideOnEnableEl) sb.$hideOnEnableEl.show();
+    if (sb.$hideOnEnableEl) sb.$hideOnEnableEl.removeClass('hidden-by-searchbar');
 
     sb.$el.trigger('searchbar:disable');
     sb.emit('local::disable searchbarDisable', sb);
@@ -383,19 +384,24 @@ class Searchbar extends FrameworkClass {
     sb.query = query;
     sb.value = query;
 
-    const { $searchContainer, $el, $backdropEl, $foundEl, $notFoundEl, $hideOnSearchEl, isVirtualList } = sb;
+    const { $searchContainer, $el, $foundEl, $notFoundEl, $hideOnSearchEl, isVirtualList } = sb;
 
     // Hide on search element
     if (query.length > 0 && $hideOnSearchEl) {
-      $hideOnSearchEl.hide();
+      $hideOnSearchEl.addClass('hidden-by-searchbar');
     } else if ($hideOnSearchEl) {
-      $hideOnSearchEl.show();
+      $hideOnSearchEl.removeClass('hidden-by-searchbar');
     }
     // Add active/inactive classes on overlay
-    if (query.length === 0) {
-      if ($searchContainer && $searchContainer.length && $el.hasClass('searchbar-enabled') && $backdropEl) sb.backdropShow();
-    } else if ($searchContainer && $searchContainer.length && $el.hasClass('searchbar-enabled')) {
-      sb.backdropHide();
+    if (
+      ($searchContainer && $searchContainer.length && $el.hasClass('searchbar-enabled')) ||
+      (sb.params.customSearch && $el.hasClass('searchbar-enabled'))
+    ) {
+      if (query.length === 0) {
+        sb.backdropShow();
+      } else {
+        sb.backdropHide();
+      }
     }
 
     if (sb.params.customSearch) {

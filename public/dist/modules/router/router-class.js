@@ -1,3 +1,4 @@
+import { window, document } from 'ssr-window';
 import $ from 'dom7';
 import Template7 from 'template7';
 import PathToRegexp from 'path-to-regexp'; // eslint-disable-line
@@ -432,6 +433,14 @@ class Router extends Framework7Class {
     if ($el[0].f7Component && $el[0].f7Component.$destroy) {
       $el[0].f7Component.$destroy();
     }
+    $el.find('.tab').each((tabIndex, tabEl) => {
+      $(tabEl).children().each((index, tabChild) => {
+        if (tabChild.f7Component) {
+          $(tabChild).trigger('tab:beforeremove');
+          tabChild.f7Component.$destroy();
+        }
+      });
+    });
     if (!router.params.removeElements) {
       return;
     }
@@ -594,6 +603,7 @@ class Router extends Framework7Class {
 
       if (matched) {
         keys.forEach((keyObj, index) => {
+          if (typeof keyObj.name === 'number') return;
           const paramValue = matched[index + 1];
           params[keyObj.name] = paramValue;
         });
@@ -877,6 +887,10 @@ class Router extends Framework7Class {
         pageFrom = $pageFromEl[0].f7Page;
       }
     }
+    pageFrom = currentPage.pageFrom || pageFrom;
+    if (pageFrom && pageFrom.pageFrom) {
+      pageFrom.pageFrom = null;
+    }
     const page = {
       app: router.app,
       view: router.view,
@@ -893,7 +907,7 @@ class Router extends Framework7Class {
       to,
       direction,
       route: currentPage.route ? currentPage.route : route,
-      pageFrom: currentPage.pageFrom || pageFrom,
+      pageFrom,
     };
 
     if ($navbarEl && $navbarEl[0]) {
@@ -920,6 +934,7 @@ class Router extends Framework7Class {
     } else {
       page = router.getPageData(pageEl, navbarEl, from, to, route, pageFromEl);
     }
+    page.swipeBack = !!options.swipeBack;
 
     const { on = {}, once = {} } = options.route ? options.route.route : {};
     if (options.on) {
@@ -972,8 +987,18 @@ class Router extends Framework7Class {
       attachEvents();
     }
     if (callback === 'init') {
-      if (restoreScrollTopOnBack && (from === 'previous' || !from) && to === 'current' && router.scrollHistory[page.route.url]) {
-        $pageEl.find('.page-content').scrollTop(router.scrollHistory[page.route.url]);
+      if (restoreScrollTopOnBack && (from === 'previous' || !from) && to === 'current' && router.scrollHistory[page.route.url] && !$pageEl.hasClass('no-restore-scroll')) {
+        let $pageContent = $pageEl.find('.page-content');
+        if ($pageContent.length > 0) {
+          // eslint-disable-next-line
+          $pageContent = $pageContent.filter((pageContentIndex, pageContentEl) => {
+            return (
+              $(pageContentEl).parents('.tab:not(.tab-active)').length === 0 &&
+              !$(pageContentEl).is('.tab:not(.tab-active)')
+            );
+          });
+        }
+        $pageContent.scrollTop(router.scrollHistory[page.route.url]);
       }
       attachEvents();
       if ($pageEl[0].f7PageInitialized) {
@@ -985,7 +1010,17 @@ class Router extends Framework7Class {
     }
     if (restoreScrollTopOnBack && callback === 'beforeOut' && from === 'current' && to === 'previous') {
       // Save scroll position
-      router.scrollHistory[page.route.url] = $pageEl.find('.page-content').scrollTop();
+      let $pageContent = $pageEl.find('.page-content');
+      if ($pageContent.length > 0) {
+        // eslint-disable-next-line
+        $pageContent = $pageContent.filter((pageContentIndex, pageContentEl) => {
+          return (
+            $(pageContentEl).parents('.tab:not(.tab-active)').length === 0 &&
+            !$(pageContentEl).is('.tab:not(.tab-active)')
+          );
+        });
+      }
+      router.scrollHistory[page.route.url] = $pageContent.scrollTop();
     }
     if (restoreScrollTopOnBack && callback === 'beforeOut' && from === 'current' && to === 'next') {
       // Delete scroll position
@@ -1026,7 +1061,10 @@ class Router extends Framework7Class {
 
     // Init Swipeback
     if ("universal" !== 'desktop') {
-      if (view && router.params.iosSwipeBack && app.theme === 'ios') {
+      if (
+        (view && router.params.iosSwipeBack && app.theme === 'ios') ||
+        (view && router.params.mdSwipeBack && app.theme === 'md')
+      ) {
         SwipeBack(router);
       }
     }
@@ -1039,7 +1077,7 @@ class Router extends Framework7Class {
     let initUrl = router.params.url;
     let documentUrl = document.location.href.split(document.location.origin)[1];
     let historyRestored;
-    if (!router.params.pushState) {
+    if (!router.params.pushState || !router.params.pushStateOnLoad) {
       if (!initUrl) {
         initUrl = documentUrl;
       }
@@ -1114,11 +1152,13 @@ class Router extends Framework7Class {
     if (router.$el.children('.page:not(.stacked)').length === 0 && initUrl) {
       // No pages presented in DOM, reload new page
       router.navigate(initUrl, {
+        initial: true,
         reloadCurrent: true,
         pushState: false,
       });
     } else {
       // Init current DOM page
+      let hasTabRoute;
       router.currentRoute = currentRoute;
       router.$el.children('.page:not(.stacked)').each((index, pageEl) => {
         const $pageEl = $(pageEl);
@@ -1151,12 +1191,14 @@ class Router extends Framework7Class {
           router.removeThemeElements($navbarInnerEl);
         }
         if (initOptions.route.route.tab) {
+          hasTabRoute = true;
           router.tabLoad(initOptions.route.route.tab, Utils.extend({}, initOptions));
         }
         router.pageCallback('init', $pageEl, $navbarInnerEl, 'current', undefined, initOptions);
       });
       if (historyRestored) {
         router.navigate(initUrl, {
+          initial: true,
           pushState: false,
           history: false,
           animate: router.params.pushStateAnimateOnLoad,
@@ -1168,10 +1210,16 @@ class Router extends Framework7Class {
             },
           },
         });
-      } else {
+      }
+      if (!historyRestored && !hasTabRoute) {
         router.history.push(initUrl);
         router.saveHistory();
       }
+    }
+    if (initUrl && router.params.pushState && router.params.pushStateOnLoad && (!History.state || !History.state[view.id])) {
+      History.initViewState(view.id, {
+        url: initUrl,
+      });
     }
     router.emit('local::init routerInit', router);
   }

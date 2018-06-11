@@ -8,9 +8,15 @@ class Range extends Framework7Class {
     super(params, [app]);
     const range = this;
     const defaults = {
+      el: null,
+      inputEl: null,
       dual: false,
       step: 1,
       label: false,
+      min: 0,
+      max: 100,
+      value: 0,
+      draggableBar: true,
     };
 
     // Extend defaults with modules params
@@ -66,6 +72,7 @@ class Range extends Framework7Class {
       min,
       max,
       value,
+      previousValue: value,
     });
 
     if ($inputEl) {
@@ -74,11 +81,11 @@ class Range extends Framework7Class {
           range.params[paramName] = parseFloat($inputEl.attr(paramName));
           range[paramName] = parseFloat($inputEl.attr(paramName));
         }
-        if (typeof $inputEl.val() !== 'undefined') {
-          range.params.value = parseFloat($inputEl.val());
-          range.value = parseFloat($inputEl.val());
-        }
       });
+      if (typeof $inputEl.val() !== 'undefined') {
+        range.params.value = parseFloat($inputEl.val());
+        range.value = parseFloat($inputEl.val());
+      }
     }
 
     // Dual
@@ -144,6 +151,11 @@ class Range extends Framework7Class {
     }
     function handleTouchStart(e) {
       if (isTouched) return;
+      if (!range.params.draggableBar) {
+        if ($(e.target).closest('.range-knob').length === 0) {
+          return;
+        }
+      }
       valueChangedByTouch = false;
       touchesStart.x = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
       touchesStart.y = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
@@ -235,6 +247,24 @@ class Range extends Framework7Class {
         range.$inputEl.trigger('change');
       }
       valueChangedByTouch = false;
+      if (typeof range.previousValue !== 'undefined') {
+        if (
+          (
+            range.dual &&
+            (
+              range.previousValue[0] !== range.value[0] ||
+              range.previousValue[1] !== range.value[1]
+            )
+          ) ||
+          (
+            !range.dual &&
+            range.previousValue !== range.value
+          )
+        ) {
+          range.$el.trigger('range:changed', range, range.value);
+          range.emit('local::changed rangeChanged', range, range.value);
+        }
+      }
     }
 
     function handleResize() {
@@ -248,6 +278,12 @@ class Range extends Framework7Class {
       app.on('touchend:passive', handleTouchEnd);
       app.on('tabShow', handleResize);
       app.on('resize', handleResize);
+      range.$el
+        .parents('.sheet-modal, .actions-modal, .popup, .popover, .login-screen, .dialog, .toast')
+        .on('modal:open', handleResize);
+      range.$el
+        .parents('.panel')
+        .on('panel:open', handleResize);
     };
     range.detachEvents = function detachEvents() {
       const passive = Support.passiveListener ? { passive: true } : false;
@@ -256,6 +292,12 @@ class Range extends Framework7Class {
       app.off('touchend:passive', handleTouchEnd);
       app.off('tabShow', handleResize);
       app.off('resize', handleResize);
+      range.$el
+        .parents('.sheet-modal, .actions-modal, .popup, .popover, .login-screen, .dialog, .toast')
+        .off('modal:open', handleResize);
+      range.$el
+        .parents('.panel')
+        .off('panel:open', handleResize);
     };
 
     // Install Modules
@@ -328,8 +370,9 @@ class Range extends Framework7Class {
     const range = this;
     const { step, min, max } = range;
     let valueChanged;
+    let oldValue;
     if (range.dual) {
-      const oldValue = [range.value[0], range.value[1]];
+      oldValue = [range.value[0], range.value[1]];
       let newValues = newValue;
       if (!Array.isArray(newValues)) newValues = [newValue, newValue];
       if (newValue[0] > newValue[1]) {
@@ -345,11 +388,15 @@ class Range extends Framework7Class {
       valueChanged = oldValue[0] !== newValues[0] || oldValue[1] !== newValues[1];
       range.layout();
     } else {
-      const oldValue = range.value;
+      oldValue = range.value;
       const value = Math.max(Math.min(Math.round(newValue / step) * step, max), min);
       range.value = value;
       range.layout();
       valueChanged = oldValue !== value;
+    }
+
+    if (valueChanged) {
+      range.previousValue = oldValue;
     }
     // Events
     if (!valueChanged) return range;
@@ -361,6 +408,10 @@ class Range extends Framework7Class {
       } else {
         range.$inputEl.trigger('input');
       }
+    }
+    if (!byTouchMove) {
+      range.$el.trigger('range:changed', range, range.value);
+      range.emit('local::changed rangeChanged', range, range.value);
     }
     range.emit('local::change rangeChange', range, range.value);
     return range;
