@@ -61,7 +61,7 @@ $$(document).on('DOMContentLoaded', function(){
         return false;
     });
     
-    $$(".page-content").fadeOut(0).fadeIn(100);
+    $(".page-content").fadeOut(0).fadeIn(100);
 });
 
 
@@ -75,7 +75,7 @@ function getPaymentState(paymentId){
             alert("ERROR: " + error + "\r\nStatus: " + status);
         },
         success: function (data, status, xhr) {
-            if (data.status == "Succeeded") {
+            if (JSON.parse(data).status == "Succeeded") {
                 mainView.router.navigate('/done/', { animate: false });
             } else {
                 mainView.router.navigate('/failed/', { animate: false });
