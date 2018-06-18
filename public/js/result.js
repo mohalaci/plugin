@@ -20,7 +20,7 @@ var $$ = Dom7;
 var mainView = app.views.create('.view-main');
 
 app.statusbar.setIosTextColor('white');
-app.statusbar.setBackgroundColor('#0097DB');
+app.statusbar.setBackgroundColor('#0084D2');
 
 app.on('init', function() {
     if ($$('html.ios').length > 0) {
