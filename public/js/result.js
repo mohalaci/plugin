@@ -12,15 +12,15 @@ var app = new Framework7({
         enabled: true,
         overlay: true,
         iosOverlaysWebView: false,
-        iosBackgroundColor: '#1A80BB',
-        materialBackgroundColor: '#1A80BB'
+        iosBackgroundColor: '#0097DB',
+        materialBackgroundColor: '#0097DB'
     }
 });
 var $$ = Dom7;
 var mainView = app.views.create('.view-main');
 
 app.statusbar.setIosTextColor('white');
-app.statusbar.setBackgroundColor('#1A80BB');
+app.statusbar.setBackgroundColor('#0097DB');
 
 app.on('init', function() {
     if ($$('html.ios').length > 0) {
