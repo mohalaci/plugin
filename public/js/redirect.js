@@ -61,7 +61,9 @@ $$(document).on('DOMContentLoaded', function(){
         return false;
     });
     
-    $(".page-content").fadeOut(0).fadeIn(100);
+    $(".page-content").addClass('fading-out');
+    setTimeout(function() { $(".page-content").removeClass('fading-out').addClass('fading-in'); }, 1000);
+    setTimeout(function() { $(".page-content").removeClass('fading-in'); }, 2000);
 });
 
 
