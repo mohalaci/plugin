@@ -1,11 +1,11 @@
 html, body {
-    background: #1A80BB;
-    background-color: #1A80BB;
+    background: #0097DB;
+    background-color: #0097DB;
 }
 
 html.with-panel-left-cover .statusbar,
 .statusbar {
-    background: #1A80BB !important;
+    background: #0097DB !important;
     transition: 250ms;
 }
 
@@ -15,11 +15,11 @@ html.device-android .statusbar {
 
 #app, 
 #app .view {
-    background: #1A80BB !important;
+    background: #0097DB !important;
 }
 
 .statusbar-overlay {
-    background: #1A80BB !important;
+    background: #0097DB !important;
 }
 
 .demo-card-header-pic .card-header {
@@ -34,7 +34,7 @@ html.device-android .statusbar {
 }
 
 .ios .view .navbar {
-    background: #1A80BB;
+    background: #0097DB;
     color: #fff;
 }
 
@@ -77,7 +77,7 @@ html.device-android .statusbar {
         left: 66px;
         right: auto;
         bottom: 0;
-        color: #1A80BB;
+        color: #0097DB;
         padding: 0;
         background: transparent;
     }
@@ -88,13 +88,13 @@ html.device-android .statusbar {
         font-weight: 700;
         right: 0;
         bottom: 0;
-        color: #1A80BB;
+        color: #0097DB;
         padding: 2px 8px 0 8px;
         background: #f2f2f2;
     }
 
         .book-list .book-list-item .book .book-header .details a {
-            color: #1A80BB;
+            color: #0097DB;
         }
     
 .book .book-header {
@@ -142,7 +142,7 @@ html.device-android .statusbar {
         bottom: 0;
         color: #ffffff;
         padding: 2px 8px 0 8px;
-        background: #1A80BB;
+        background: #0097DB;
     }
 
 .book .titlebar {
