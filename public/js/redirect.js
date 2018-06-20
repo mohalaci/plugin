@@ -44,11 +44,13 @@ app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#0097DB');
 
 app.on('init', function() {
-    if ($$('html.ios').length > 0) {
+    if ($$('html.device-ios').length > 0) {
         $$('body').scrollTop(20);
         $$('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
     }
 });
 
@@ -60,6 +62,15 @@ $$(document).on('DOMContentLoaded', function(){
         e.stopPropagation();
         return false;
     });
+
+    if ($$('html.device-ios').length > 0) {
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
+    } else {
+        app.statusbar.hide();
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
+    }
     
     $(".page-content").addClass('fading-out');
     setTimeout(function() { $(".page-content").removeClass('fading-out').addClass('fading-in'); }, 1000);
