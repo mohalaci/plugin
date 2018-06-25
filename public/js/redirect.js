@@ -39,6 +39,8 @@ var app = new Framework7({
 var $$ = Dom7;
 var barionMarket = new BarionMarket();
 var mainView = app.views.create('.view-main');
+mainView.router.allowPageChange = true;
+
 
 app.statusbar.setIosTextColor('white');
 app.statusbar.setBackgroundColor('#0097DB');
@@ -72,9 +74,9 @@ $$(document).on('DOMContentLoaded', function(){
         $$('.view').scrollTop(20);
     }
     
-    $(".page-content").addClass('fading-out');
-    setTimeout(function() { $(".page-content").removeClass('fading-out').addClass('fading-in'); }, 1000);
-    setTimeout(function() { $(".page-content").removeClass('fading-in'); }, 2000);
+    $$(".page-content").addClass('fading-out');
+    setTimeout(function() { $$(".page-content").removeClass('fading-out').addClass('fading-in'); }, 1000);
+    setTimeout(function() { $$(".page-content").removeClass('fading-in'); }, 2000);
 });
 
 
