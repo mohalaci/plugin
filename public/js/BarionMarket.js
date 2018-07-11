@@ -9,6 +9,9 @@ var BarionMarket = (function(){
         if (typeof setShippingAddress != "function"){
             console.error("WARNING!!! You need to implement setShippingAddress() method!");
         }
+        if (typeof setVehicle != "function"){
+            console.error("WARNING!!! You need to implement getVehicle() method!");
+        }
     };
     function postToBarionHandler(obj) {
         var handler = null;
@@ -40,5 +43,13 @@ var BarionMarket = (function(){
         var closeObj = { 'action': 'changeAddress' };
         postToBarionHandler(closeObj);
     };
+
+    market.prototype.getVehicle = function(){
+        var closeObj = { 'action': 'getVehicle'};
+        postToBarionHandler(closeObj);
+    }
+    market.prototype.changeVehicle = function(){
+        this.getVehicle();
+    }
     return market;
 })();

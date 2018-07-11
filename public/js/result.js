@@ -20,14 +20,16 @@ var $$ = Dom7;
 var mainView = app.views.create('.view-main');
 
 app.statusbar.setIosTextColor('white');
-app.statusbar.setBackgroundColor('#0084D2');
+app.statusbar.setBackgroundColor('#0097DB');
 
-app.on('init', function() {
-    if ($$('html.ios').length > 0) {
+app.on('init', function () {
+    if ($$('html.device-ios').length > 0) {
         $$('body').scrollTop(20);
         $$('.view').scrollTop(20);
     } else {
         app.statusbar.hide();
+        $$('body').scrollTop(20);
+        $$('.view').scrollTop(20);
     }
 });
 
