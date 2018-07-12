@@ -2,7 +2,7 @@ var books =
 [
     {
         bookId: 1,
-        bookImage: "/img/books/neuromancer.png",
+        bookImage: "/img/books/neuromancer.jpg",
         bookTitle: "Neuromancer",
         bookAuthor: "William Gibson",
         bookRating: 4.5,
@@ -16,7 +16,7 @@ var books =
     },
     {
         bookId: 2,
-        bookImage: "/img/books/themartian.png",
+        bookImage: "/img/books/themartian.jpg",
         bookTitle: "The Martian",
         bookAuthor: "Andy Weir",
         bookRating: 4.5,
@@ -30,7 +30,7 @@ var books =
     },
     {
         bookId: 3,
-        bookImage: "/img/books/girlonthetrain.png",
+        bookImage: "/img/books/girlonthetrain.jpg",
         bookTitle: "The Girl On The Train",
         bookAuthor: "Paula Hawkins",
         bookRating: 4.5,
@@ -44,7 +44,7 @@ var books =
     },
     {
         bookId: 4,
-        bookImage: "/img/books/harrypotter.png",
+        bookImage: "/img/books/harrypotter.jpg",
         bookTitle: "Harry Potter And The Philosopher's Stone",
         bookAuthor: "J. K. Rowling",
         bookRating: 4.5,
@@ -58,7 +58,7 @@ var books =
     },
     {
         bookId: 5,
-        bookImage: "/img/books/caribbean.png",
+        bookImage: "/img/books/caribbean.jpg",
         bookTitle: "A Caribbean Mystery",
         bookAuthor: "Agatha Christie",
         bookRating: 4.5,
@@ -72,7 +72,7 @@ var books =
     },
     {
         bookId: 6,
-        bookImage: "/img/books/origin.png",
+        bookImage: "/img/books/origin.jpg",
         bookTitle: "Origin",
         bookAuthor: "Dan Brown",
         bookRating: 4.5,
