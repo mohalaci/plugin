@@ -25,8 +25,8 @@ var app = new Framework7({
     },
     on: {
         pageInit: function (e, page) {
-            if (page.route.path != "/done/" && page.route.path != "/failed/") {
-                var query = page.route.query;
+            if (e.route.path != "/done/" && e.route.path != "/failed/") {
+                var query = e.route.query;
                 var _t = setTimeout(function() {
                     getPaymentState(query.paymentId);
                 }, 2000);
