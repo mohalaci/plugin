@@ -1,4 +1,3 @@
-
 var app = new Framework7({
     root: '#app',
     name: 'My App',
@@ -25,7 +24,7 @@ var app = new Framework7({
         materialBackgroundColor: '#0097DB'
     },
     on: {
-        pageInit(page) {
+        pageInit: function (e, page) {
             if (page.route.path != "/done/" && page.route.path != "/failed/") {
                 var query = page.route.query;
                 var _t = setTimeout(function() {
