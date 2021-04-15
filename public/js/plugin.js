@@ -108,7 +108,6 @@ var app = new Framework7({
 
 var $$ = Dom7;
 
-var barionMarket = new BarionMarket();
 var mainView = app.views.create('.view-main');
 mainView.router.allowPageChange = true;
 
@@ -149,11 +148,27 @@ if ($$('html.device-ios').length > 0) {
     $$('.view').scrollTop(20);
 }
 
+function getShippingAddress(){
+    BarionMarket.getInstance().getDefaultAddress(function(address){
+        setShippingAddress(null);
+    });
+}
+
+function getAddress(){
+    BarionMarket.getInstance().getAddress(function(address){
+        //selectAddress(address);
+    });
+}
+
+function closePlugin(){
+    BarionMarket.getInstance().closePlugin();
+}
+
 $$(document).on('click', "#payWithBarionButton", getPaymentId);
-    $$(document).on('click', "#setShippingButton", barionMarket.getShippingAddress);
-    $$(document).on('click', "#resultButton", barionMarket.closePlugin);
-    $$(document).on('click', "#exitButton", barionMarket.closePlugin);
-    $$(document).on('click', "#changeAddressButton", barionMarket.selectAddress);
+    $$(document).on('click', "#setShippingButton", getShippingAddress);
+    $$(document).on('click', "#resultButton", closePlugin);
+    $$(document).on('click', "#exitButton", closePlugin);
+    $$(document).on('click', "#changeAddressButton", getAddress);
 
     $$(document).on('click', ".book-list-item", function () {
         var $card = $$(this).find('.card');
