@@ -4,7 +4,7 @@
   "description": "Barion Market Plugin",
   "main": "pluginserver.js",
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "barion-nodejs": "^1.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
